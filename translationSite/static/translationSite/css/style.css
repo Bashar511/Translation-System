@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+
+* {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0
+}
+
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('../images/bg.jpg') center center / cover
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    max-height: 100vh;
+    gap: 1rem
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 25em;
+    margin-inline: 1rem;
+    padding: 1.5em;
+    border-radius: 1em;
+    backdrop-filter: blur(1.5em);
+    border: .1em solid #ffffff80;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    color: #ffffff80;
+    text-align: center;
+    margin-bottom: 1em;
+}
+.form .txt-input {
+    background: transparent;
+    border: .1em solid #ffffff80;
+    border-radius: .5em;
+    height: 5rem;
+    font-size: 1rem;
+    color: white;
+    padding: .5em;
+    outline: none;
+    resize: none
+}
+.form .txt-input::placeholder {
+    color: #ffffff80
+}
+
+
+.form .btn {
+    padding: .5em;
+    cursor: pointer;
+    border-radius: .5em;
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 1em 0;
+    transition: .3s ease;
+    border: .1em solid transparent;
+    text-transform: uppercase;
+}
+.form .btn:hover {
+    color: white;
+    background: transparent;  
+    border-color: white
+}
+
+
+.reply  {
+    color: white;
+    font-size: 1rem;
+}
