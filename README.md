@@ -7,10 +7,11 @@ This is the initial base of a fifth year graduation project named **Artificial I
 2. Activate myenv using *PowerShell*  
    `myenv\Scripts\Activate.PS1`
 3. Install required dependencies  
-   `pip install django`
-4. Start django development server
+   `pip install django`  
+   `pip install requests`
+4. Start django development server  
    `python manage.py runserver`
 5. Navigate to [127.0.0.1:8000/home/](http://127.0.0.1:8000/home/)
 ## Notes
 - The site renders a simple UI in which users can input English text to be translated to Arabic.
-- The translation is done by OPUS-MT English to Arabic model using Hugging Face hosted API [link](https://huggingface.co/Helsinki-NLP/opus-mt-tc-big-en-ar)
+- The translation is done by mBART-50 many to many multilingual machine translation model using Hugging Face hosted API [link.](https://huggingface.co/facebook/mbart-large-50-many-to-many-mmt)
