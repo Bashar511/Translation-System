@@ -20,4 +20,4 @@ def home(request):
             'processed' : 'Translated Text',
            
         }
-    return render(request, "translationSite\index.html",context)
+    return render(request, "../templates\index.html", context)

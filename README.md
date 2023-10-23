@@ -9,7 +9,9 @@ This is the initial base of a fifth year graduation project named **Artificial I
 3. Install required dependencies  
    `pip install django`  
    `pip install requests`
-4. Start django development server  
+4. Navigate to the backend directory  
+   `cd backend`
+5. Start django development server  
    `python manage.py runserver`
 5. Navigate to [127.0.0.1:8000/home/](http://127.0.0.1:8000/home/)
 ## Notes
