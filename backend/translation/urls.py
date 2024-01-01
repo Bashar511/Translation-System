@@ -16,8 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from app1 import views
 
 urlpatterns = [
     path("home/", include("translationSite.urls")),
     path('admin/', admin.site.urls),
+    path('',views.SignupPage,name='signup'),
+    path('login/',views.LoginPage,name='login'),
+    path('homee/',views.HomePage,name='homee'),
+    path('logout/',views.LogoutPage,name='logout'),
+
+
+
 ]
