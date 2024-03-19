@@ -2,14 +2,15 @@ from django.urls import path, include
 from django.contrib.auth import logout
 from . import views
 
-
+app_name = 'translation'
 urlpatterns = [
-    path('', views.home, name="home"),
-    path('', include('django.contrib.auth.urls')),
-    path('register/', views.register, name='register'),
-    path('edit/', views.edit, name='edit'),
-    path('dashboard/', views.index, name='dashboard'),
-    path('Logout/',views.logout_user, name='Logout'),
-    
+    path('instant_translation/', views.instant, name='instant'),
+    path('browse_projects/', views.browse, name='browse'),
+    path('create_project/', views.create, name='create'),
+    # path('current_project/<int:id>/', views.current, name='current'),
+    path('current_project/<int:id>/', views.PostUpdateView.as_view(), name='current'),
+
 
 ]
+
+

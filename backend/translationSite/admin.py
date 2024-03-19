@@ -1,12 +1,13 @@
 from django.contrib import admin
 from .models import *
 
-@admin.register(Profile)
-class ProfileAdmin(admin.ModelAdmin):
-    list_display = ['user', 'date_of_birth', 'photo']
-    raw_id_fields = ['user']
+# register tables from db in admin panel
+# Organize the display of fild in admin panel
 
-@admin.register(project)
+
+
+
+@admin.register(project1)
 class ProjectAdmin(admin.ModelAdmin):
         list_display = ['title', 'author', 'publish']
         list_filter = ['deliverytime', 'publish']
@@ -17,12 +18,17 @@ class ProjectAdmin(admin.ModelAdmin):
 
 
 
-
-@admin.register(outputAI)
+@admin.register(output_AI)
 class outputAIAdmin(admin.ModelAdmin):
-        list_display = ['title', 'status']
-        list_filter = ['status', 'starttime', 'endtime']
-        search_fields = ['title','sentenceEN']
-        ordering = ['status', 'starttime','endtime']
+        list_display = ['title']
+        search_fields = ['title',]
+
+
+@admin.register(processed_output_AI)
+class processed_output_AI_Admin(admin.ModelAdmin):
+        list_display = ['sentenceEN', 'sentenceAR', 'starttime','endtime','status']
+        list_filter = ['starttime', 'sentenceEN']
+        search_fields = ['starttime', 'sentenceEN']
+        ordering = ['starttime']
 
 

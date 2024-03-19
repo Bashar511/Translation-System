@@ -14,12 +14,12 @@
     {% else %}
         <p>
             Please enter your username and password.
-            If you do not have an account, <a href="{% url 'register' %}">Register here</a>
+            If you do not have an account, <a href="{% url 'authh:register' %}">Register here</a>
         </p>
     {% endif %}
 
     <div class="login-form">
-        <form action="{% url 'login' %}" method="post">
+        <form action="{% url 'authh:login' %}" method="post">
             {{ form.as_p }}
             {% csrf_token %}
             <input type="hidden" name="next" value="{{ next }}">
@@ -27,7 +27,7 @@
         </form>
 
         <p>
-            <a href="{% url 'password_reset' %}">
+            <a href="{% url 'authh:password_reset' %}">
                 Forgotten your password?
             </a>
         </p>

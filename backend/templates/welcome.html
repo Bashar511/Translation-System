@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %} welcome {% endblock %}
+{% block content %}
+<h1>welcome</h1>
+<p><a href="{% url 'translation:instant' %}">instance</a></p>
+<p><a href="{% url 'authh:register' %}">register</a></p>
+<p><a href="{% url 'authh:login' %}">log in</a></p>
+
+{% endblock %}

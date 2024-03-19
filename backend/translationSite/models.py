@@ -6,14 +6,17 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
-class project(models.Model):
+
+
+class project1(models.Model):
         title=models.CharField(max_length=50)
         author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_posts')
         publish = models.DateTimeField(default=timezone.now)
-        deliverytime=models.DateTimeField()
-        fileEN=models.FileField()
-        fileAR=models.FileField()
-        
+        deliverytime=models.DateField()
+        fileEN=models.FileField(upload_to='input')
+        # updated_by = models.ForeignKey(User,null=True,related_name='+',on_delete=models.CASCADE)
+        updated_dt = models.DateTimeField(null=True)
+
         class Meta:
             ordering = ['-publish']
             indexes = [
@@ -22,16 +25,27 @@ class project(models.Model):
         def __str__(self):
             return self.title
 
-class outputAI (models.Model):
+
+
+class output_AI (models.Model):
+        title=models.ForeignKey(project1,related_name='output',on_delete=models.CASCADE)
+        fileAR=models.FileField(upload_to='out_ai')
+        def __str__(self):
+            return  self.title.title +" "
+
+
+
+class processed_output_AI (models.Model):
     class Status(models.TextChoices):
         correct = 'ct', 'correct translation'
         not_verified_yet = 'ny', 'not verified yet'
         re_translated = 'rt', 're-translated'
-    title=models.ForeignKey(project,related_name='output',on_delete=models.CASCADE)
+    rfk=models.ForeignKey(output_AI,related_name='output',on_delete=models.CASCADE)
     sentenceEN=models.TextField(max_length=1000)
     sentenceAR=models.TextField(max_length=1000)
     starttime=models.TimeField()
     endtime=models.TimeField()
+
     status = models.CharField(max_length=2, choices=Status.choices, default=Status.not_verified_yet)
     
     class Meta:
@@ -39,18 +53,10 @@ class outputAI (models.Model):
             indexes = [
                 models.Index(fields=['starttime']),
             ]
-    
     def __str__(self):
-        return self.title
-    
+            title=str(self.starttime )
+            return title 
+        
 
 
 
-class Profile(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-
-    date_of_birth = models.DateField(blank=True, null=True)
-    photo = models.ImageField(upload_to='users/%Y/%m/%d', blank=True)
-    
-    def __str__(self):
-        return f'Profile of {self.user.username}'

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %} browse_projects {% endblock %}
+{% block content %}
+<h1>browse_projects</h1>
+
+
+<div id="all-project">
+    <h2>show all project</h2>
+    {% csrf_token %}
+    {% for out in form_out %}
+    <h1><a href="{% url 'translation:current' out.pk %}">{{ out.title }}</a></h1>
+    <h2>{{ out.id }}</h2>
+    <h2>{{ out.publish }}</h2>
+    <h2>{{ out.deliverytime }}</h2>
+    <h2><a href="/media/{{ out.fileEN }}">{{ out.fileEN }}</a></h2>
+    {% comment %} <a href="{%url 'edit_project' out.pk %}">update</a> {% endcomment %}
+
+    {% endfor %}
+  </div>
+
+  <h1>{{ details.title }}</h1>
+  <p class="date">
+  Published {{ details.publish }} by {{ details.author }}
+  </p>
+
+
+{% endblock %}

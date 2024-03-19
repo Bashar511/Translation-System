@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+#  to ensure that the user is correct, send him a link so that he can renew the forgotten password
 
 class EmailAuthBackend():
     def authenticate(self, request, username=None, password=None):

@@ -1,0 +1,16 @@
+npx create-react-app
+cd my-app
+npm start
+
+
+
+npm install uuid
+
+
+npm install
+
+npm i
+
+npm install express
+
+npm run start

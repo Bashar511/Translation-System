@@ -1,14 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render ,get_object_or_404,redirect
 from django.http import HttpResponse
 from .api import hel_en2ar, bart_en2ar
-from .forms import LoginForm, UserRegistrationForm, UserEditForm, ProfileEditForm
+from .forms import *
+from .models import *
 from django.contrib.auth.decorators import login_required
-from .models import Profile
-from django.contrib import messages
-from django.contrib.auth import logout
+from django.views.generic import (UpdateView)
 
 
-def home(request):
+def instant(request):
     if request.method == 'POST':
         text = request.POST['text_field']
         #processed_text = hel_en2ar(text)
@@ -23,48 +22,52 @@ def home(request):
             'processed' : 'Translated Text',
            
         }
-    return render(request, "index.html", context)
-
-
-
+    return render(request, "instant_translation.html", context)
 
 
 @login_required
-def index(request):
-    return render(request, 'index.html', {'section': 'index'})
+def browse(request):
+    allproject=project1.objects.filter(author=request.user)
+    # allproject=""
+    return render(request,'browse_projects.html',{'form_out':allproject})
 
-def register(request):
-    if request.method == 'POST':
-        user_form = UserRegistrationForm(request.POST)
-        if user_form.is_valid():
-            new_user = user_form.save(commit=False)
-            new_user.name = new_user.set_password(user_form.cleaned_data['password'])
-            new_user.save()
-            Profile.objects.create(user=new_user)
-            return render(request, 'registration/register_done.html', {'new_user': new_user})
-    else:
-        user_form = UserRegistrationForm()
-    return render(request, 'registration/register.html', {'user_form': user_form})
 
-@login_required
-def edit(request):
+
+def create (request):
     if request.method == 'POST':
-        user_form = UserEditForm(instance=request.user, data=request.POST)
-        profile_form = ProfileEditForm(instance=request.user.profile, data=request.POST, files=request.FILES)
-        if user_form.is_valid() and profile_form.is_valid():
-            user_form.save()
-            profile_form.save()
-            messages.success(request, 'Profile has been updated successfully.')
+        form = projectForm(request.POST,request.FILES)
+        if form.is_valid() :
+            form = form.save(commit=False)
+            form.author=request.user
+            form.save()
         else:
-            messages.error(request, 'Error updaing your profile.')
-
-    else:
-        user_form = UserEditForm(instance=request.user)
-        profile_form = ProfileEditForm(instance=request.user.profile)
+            return render(request,'create_project.html',{'form':form})
+    form=projectForm()
+    return render(request,'create_project.html',{'form':form})
     
-    return render(request, 'registration/edit.html', {'user_form': user_form, 'profile_form': profile_form})
+    
+
+# def current (request,id):
+#     details = get_object_or_404(project1,id=id)
+#     # details_AI = get_object_or_404(output_AI,title_id=id)
+#     print(details)
+#     return render(request,'current.html',{'details':details})
 
 
-def logout_user (request):
-    logout(request)
-    return render(request, 'registration/logged_out.html')
+class PostUpdateView(UpdateView):
+    model = project1
+    # fields = ('title','publish','deliverytime','fileEN')
+    fields = ('title','fileEN','deliverytime',)
+    template_name = 'current.html'
+    context_object_name = 'updateform'
+    pk_url_kwarg = 'id'
+    def form_valid(self, form):
+        updateform=form.save(commit=False)
+        print("11111111")
+
+        updateform.updated_dt = timezone.now()
+        
+        updateform.save()
+        return redirect('project')
+
+
