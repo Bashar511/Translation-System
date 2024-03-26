@@ -1,0 +1,22 @@
+git clone https://github.com/yazanqazq/tests.gitgit
+git status
+git add *
+git reset head
+git commit -m ""
+git push remotename branchname
+branchname= git branch
+remotename= git remote -v
+git fetch  "in remote to local"
+git checkout "in local to working dire"
+git merge
+git pull remotename
+git config -l
+
+////////////////////////
+رفع مشروع
+git init
+اضافة ملفات اوانشاء مشروع*********
+git remote add origin git@github.com:yazanqazq/testup.git
+git push -u remotename branchname
+
+

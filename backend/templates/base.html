@@ -1,0 +1,57 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div id="header">
+        <span class="logo">logo</span>
+        {% if request.user.is_authenticated %}
+            <ul class='menu'>
+                <li {% if section == 'browse' %} class="selected" {% endif %}>
+                    <a href="{% url 'translation:browse' %}">browse</a>
+                </li>                
+                <li {% if section == 'create' %} class="selected" {% endif %}>
+                    <a href="{% url 'translation:create' %}">create</a>
+                </li>
+
+                
+    
+                <li {% if section == 'project' %} class="selected" {% endif %}>
+                    <a href="#">project2</a>
+                </li>
+            </ul>
+        {% endif %}
+
+        <span class="user">
+            {% if request.user.is_authenticated %}
+                Hello {{ request.user.first_name|default:request.user.username }}
+                <a href="{% url 'authh:Logout' %}">Logout</a> 
+                or <a href="{% url 'authh:edit' %}">edit</a>
+                or <a href="{% url 'authh:password_change' %}">password_change</a>
+            {% else %}
+                <a href="{% url 'authh:login' %}">Login</a>
+            {% endif %}
+        </span>
+
+    </div>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{message.tags}}">
+                    {{message|safe}}
+                </li>
+                <a href="#" class="close">X</a>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <div id="content">
+        {% block content %} {% endblock %}
+    </div>
+</body>
+</html>
