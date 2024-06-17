@@ -2,9 +2,13 @@ from django.shortcuts import render ,get_object_or_404,redirect
 from django.http import HttpResponse
 from .api import hel_en2ar, bart_en2ar
 from .forms import *
+from .subtitle_parser import *
 from .models import *
 from django.contrib.auth.decorators import login_required
 from django.views.generic import (UpdateView)
+from django.utils.datastructures import MultiValueDictKeyError
+
+
 
 
 def instant(request):
@@ -20,7 +24,6 @@ def instant(request):
         context = {
             'unprocessed' : '',
             'processed' : 'Translated Text',
-           
         }
     return render(request, "instant_translation.html", context)
 
@@ -28,7 +31,6 @@ def instant(request):
 @login_required
 def browse(request):
     allproject=project1.objects.filter(author=request.user)
-    # allproject=""
     return render(request,'browse_projects.html',{'form_out':allproject})
 
 
@@ -69,5 +71,41 @@ class PostUpdateView(UpdateView):
         
         updateform.save()
         return redirect('project')
+
+
+
+def test(request,x):
+    project = get_object_or_404(project1,pk=x)
+    file=project.fileEN
+    processed_file =parse_srt(file.path) 
+    if request.method == 'POST':
+        manual=request.POST['text_manual']
+        try:
+            text = request.POST['text_field']
+        except MultiValueDictKeyError:
+            text = ''
+        processed_text = bart_en2ar(text)
+        context = {
+            'unprocessed' : text,
+            'processed' : processed_text,
+            'file' : processed_file,
+            'tran':manual,
+        }
+        for key in processed_file:
+            processed_file[key]["translate"]=manual
+
+        # print(processed_file[1])
+        create_srt(processed_file, file.path)
+    else:
+        context = {
+            'unprocessed' : '',
+            'processed' : '',
+            'file' : processed_file,
+            'tran':'',
+        }
+    
+    return render(request, "test.html", context)
+
+
 
 

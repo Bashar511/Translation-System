@@ -9,6 +9,8 @@ urlpatterns = [
     path('create_project/', views.create, name='create'),
     # path('current_project/<int:id>/', views.current, name='current'),
     path('current_project/<int:id>/', views.PostUpdateView.as_view(), name='current'),
+    # path('test/<int:id>/', views.test, name='test'),
+    path('test/<int:x>/', views.test, name='test'),
 
 
 ]

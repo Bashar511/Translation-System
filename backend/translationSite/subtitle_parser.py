@@ -24,7 +24,7 @@ def parse_srt(filename):
         # New subtitle block
         current_id = int(line)
         current_text = []
-      elif line and ':' in line:
+      elif line and ' --> ' in line:
         # Start/end time
         start_time, end_time = line.split(' --> ')
       elif line:
@@ -35,8 +35,8 @@ def parse_srt(filename):
         if current_id and current_text:
           subtitles[current_id] = {
               "ID": current_id,
-              "start-time": start_time,
-              "end-time": end_time,
+              "start_time": start_time,
+              "end_time": end_time,
               "sentence": "\n".join(current_text),
           }
           current_id = None
@@ -66,8 +66,9 @@ def create_srt(subtitle_dict, filename):
   with open(filename, 'w', encoding='utf-8') as file:
     for subtitle_id, subtitle in subtitle_dict.items():
       file.write(f"{subtitle_id}\n")
-      file.write(f"{subtitle['start-time']} --> {subtitle['end-time']}\n")
+      file.write(f"{subtitle['start_time']} --> {subtitle['end_time']}\n")
       file.write(f"{subtitle['sentence']}\n\n")
+      file.write(f"{subtitle['translate']}\n\n")
 
 # Example usage
 # subtitle_dict = {
