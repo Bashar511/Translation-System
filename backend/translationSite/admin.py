@@ -18,17 +18,17 @@ class ProjectAdmin(admin.ModelAdmin):
 
 
 
-@admin.register(output_AI)
-class outputAIAdmin(admin.ModelAdmin):
-        list_display = ['title']
-        search_fields = ['title',]
+# @admin.register(output_AI1)
+# class outputAIAdmin(admin.ModelAdmin):
+#         list_display = ['title']
+#         search_fields = ['title',]
 
 
-@admin.register(processed_output_AI)
-class processed_output_AI_Admin(admin.ModelAdmin):
-        list_display = ['sentenceEN', 'sentenceAR', 'starttime','endtime','status']
-        list_filter = ['starttime', 'sentenceEN']
-        search_fields = ['starttime', 'sentenceEN']
-        ordering = ['starttime']
+# @admin.register(processed_output_AI)
+# class processed_output_AI_Admin(admin.ModelAdmin):
+#         list_display = ['sentenceEN', 'sentenceAR', 'starttime','endtime','status']
+#         list_filter = ['starttime', 'sentenceEN']
+#         search_fields = ['starttime', 'sentenceEN']
+#         ordering = ['starttime']
 
 

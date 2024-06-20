@@ -68,7 +68,7 @@ def create_srt(subtitle_dict, filename):
       file.write(f"{subtitle_id}\n")
       file.write(f"{subtitle['start_time']} --> {subtitle['end_time']}\n")
       file.write(f"{subtitle['sentence']}\n\n")
-      file.write(f"{subtitle['translate']}\n\n")
+      # file.write(f"{subtitle['translate']}\n\n")
 
 # Example usage
 # subtitle_dict = {

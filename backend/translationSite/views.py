@@ -7,14 +7,11 @@ from .models import *
 from django.contrib.auth.decorators import login_required
 from django.views.generic import (UpdateView)
 from django.utils.datastructures import MultiValueDictKeyError
-
-
-
+from django.core.files.base import ContentFile
 
 def instant(request):
     if request.method == 'POST':
         text = request.POST['text_field']
-        #processed_text = hel_en2ar(text)
         processed_text = bart_en2ar(text)
         context = {
         'unprocessed' : text,
@@ -27,59 +24,71 @@ def instant(request):
         }
     return render(request, "instant_translation.html", context)
 
-
 @login_required
 def browse(request):
     allproject=project1.objects.filter(author=request.user)
     return render(request,'browse_projects.html',{'form_out':allproject})
 
 
-
 def create (request):
     if request.method == 'POST':
         form = projectForm(request.POST,request.FILES)
+        title = request.POST.get('title')
         if form.is_valid() :
-            form = form.save(commit=False)
-            form.author=request.user
-            form.save()
+            form_instance = form.save(commit=False)
+            form_instance.author=request.user
+            srt_content = "1\n00:00:00,000 --> 00:00:05,000\n"  
+            file_name = f"{title}.srt"
+            form_instance.fileAR.save(file_name, ContentFile(srt_content))
+            form_instance.save()
         else:
             return render(request,'create_project.html',{'form':form})
     form=projectForm()
     return render(request,'create_project.html',{'form':form})
-    
-    
-
-# def current (request,id):
-#     details = get_object_or_404(project1,id=id)
-#     # details_AI = get_object_or_404(output_AI,title_id=id)
-#     print(details)
-#     return render(request,'current.html',{'details':details})
 
 
 class PostUpdateView(UpdateView):
     model = project1
-    # fields = ('title','publish','deliverytime','fileEN')
     fields = ('title','fileEN','deliverytime',)
     template_name = 'current.html'
     context_object_name = 'updateform'
     pk_url_kwarg = 'id'
     def form_valid(self, form):
         updateform=form.save(commit=False)
-        print("11111111")
-
         updateform.updated_dt = timezone.now()
-        
         updateform.save()
-        return redirect('project')
+        return redirect('browse_projects.html')
 
 
 
 def test(request,x):
     project = get_object_or_404(project1,pk=x)
-    file=project.fileEN
-    processed_file =parse_srt(file.path) 
+    fileEN=project.fileEN
+    fileAR=project.fileAR
+    processed_fileEN =parse_srt(fileEN.path) 
+    processed_fileAR_before =parse_srt(fileAR.path) 
+    processed_fileAR_after={}
+    
+    for key, value in processed_fileEN.items():
+            processed_fileAR_after[key]= {
+            "ID": key,
+            "start_time":value["start_time"],
+            "end_time":value["end_time"],
+            "sentence":'',
+            }
+    for key, value in processed_fileAR_before.items():
+        processed_fileAR_after[key]["sentence"]=processed_fileAR_before[key]["sentence"]
     if request.method == 'POST':
-        manual=request.POST['text_manual']
+        try:
+            number=request.POST['number']
+        except MultiValueDictKeyError:
+            number=2
+            
+        try:
+            decision=request.POST['final_decision']
+        except MultiValueDictKeyError:
+            decision=''
+            
         try:
             text = request.POST['text_field']
         except MultiValueDictKeyError:
@@ -88,24 +97,23 @@ def test(request,x):
         context = {
             'unprocessed' : text,
             'processed' : processed_text,
-            'file' : processed_file,
-            'tran':manual,
+            'fileEN' : processed_fileEN,
+            'fileAR' : processed_fileAR_after,
+            'decision':decision,
+            'ID':number,
         }
-        for key in processed_file:
-            processed_file[key]["translate"]=manual
-
-        # print(processed_file[1])
-        create_srt(processed_file, file.path)
+        processed_fileAR_after[int(number)]["sentence"]=decision
+        create_srt(processed_fileAR_after, fileAR.path)
     else:
         context = {
             'unprocessed' : '',
             'processed' : '',
-            'file' : processed_file,
-            'tran':'',
+            'fileEN' : processed_fileEN,
+            'fileAR' : processed_fileAR_after,
+            'decision':'',
+            'ID':1,
         }
-    
     return render(request, "test.html", context)
-
 
 
 

@@ -8,11 +8,13 @@ from django.contrib.auth import authenticate, login
 # Create your views here.
 # 
 def welcome(request):
+    # Welcome page with user links
     if request.user.is_authenticated :
         return redirect('translation:browse')
     return render(request, 'welcome.html')
 
 def signup(request):
+    # Proceed to register the user account
     if request.method == 'POST':
         user_form = UserRegistrationForm(request.POST)
         if user_form.is_valid():
@@ -33,6 +35,7 @@ def signup(request):
 
 @login_required
 def edit(request):
+    # Proceed to modify the user account
     if request.method == 'POST':
         user_form = UserEditForm(instance=request.user, data=request.POST)
         profile_form = ProfileEditForm(instance=request.user.profile, data=request.POST, files=request.FILES)

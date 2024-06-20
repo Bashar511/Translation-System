@@ -7,82 +7,70 @@
     <h1>Testing Form</h1>
     <form action="" method="post" class="form">
       {% csrf_token %}
-      <textarea name="text_field" id="txt-input" class="txt-input" placeholder="Insert text to translate" >{{ processed }}</textarea>
+      <textarea name="text_field" id="txt-input" class="txt-input" placeholder="Insert text to translate">{{ processed }}</textarea>
       <button type="submit" id="btn" class="btn">Submit</button>
     </form> 
-              
   </div>
   <div class="wrapper">
     <h1>Reply</h1>
     <div class="replyy" id="replyy">
       <p>{{ processed }}</p>
-      </div>
-  </div>
-  <div class="wrapper">
-    <h1>Manual translation</h1>
-    <form action="" method="post" class="form">
-      {% csrf_token %}
-      <textarea name="text_manual" id="txt-input" class="txt-input" placeholder="Insert translate" ></textarea>
-      <button type="submit" id="btn" class="btn">Submit</button>
-    </form>
     </div>
   </div>
+  <div class="wrapper">
+    <h1>Final Decision</h1>
+    <form action="" method="post" class="form">
+      {% csrf_token %}
+      <textarea name="final_decision" id="txt-input" class="txt-input" placeholder="Insert translate"></textarea>
+      <label for="number">ID</label>
+      <input type="number" id="number" name="number" step="1" min="1" placeholder="Enter the wholesale number" required>
+      <button type="submit" id="btn" class="btn">Submit</button>
+    </form>
+  </div>
 </div>
-<table border cellpadding="20"style="height: 200px; ">
-      <caption>srs</caption>
-      <tr>
-            <th>ID</th>
-            <th>start time</th>
-            <th>end time</th>
-            <th>sentence</th>
-            <th>translate</th>
-      </tr>
-      {% for key, value in file.items %}
-            <tr>
-            <td>{{ value.ID }}</td>
-            <td>{{ value.start_time }}</td>
-            <td>{{ value.end_time }}</td>
-            <td onclick="copyToTextarea('{{ value.sentence }}')">{{ value.sentence }}</td>
-            <td id="i"><textarea name="t" id="t">{{ tran }}</textarea></td> 
-            {% endfor %} 
-
-            
-            
-
-            </tr>
+<table border="1" cellpadding="20" style="height: 200px;">
+  <caption>srs</caption>
+  <tr>
+    <th>ID</th>
+    <th>start time</th>
+    <th>end time</th>
+    <th>sentence</th>
+    <th>translate</th>
+  </tr>
+  {% for key, value in fileEN.items %}
+  <tr>
+    <td>{{ value.ID }}</td>
+    <td>{{ value.start_time }}</td>
+    <td>{{ value.end_time }}</td>
+    <td onclick="copyToTextarea('{{ value.sentence }}')">{{ value.sentence }}</td>
+    {% comment %} |escape|linebreaks {% endcomment %}
+    <td id="i">
+      {% for key1, value1 in fileAR.items %}
+          {% if key == key1 %}
+          <textarea name="t" id="t">{{ value1.sentence }}</textarea>
+          {% endif %}
+        {% endfor %}
+     
+    </td>
+  </tr>
+  {% endfor %}
 </table>
- {% comment %} {% for key, value in processed.items %} {% endcomment %}
 
 <script>
-      function copyToTextarea(text) {
-            var textarea1 = document.getElementById('txt-input');
-            //textarea.value = text ;
-            sentence = text.replace(/\n/g, ' ');
-            textarea1.value = JSON.stringify(sentence) + '\n';
-            const textarea = document.getElementById('replyy');
-            const button = document.getElementById('myButton');
-            const input = document.getElementById('i');
-            console.log(input)
-            button.addEventListener('click', () => {
-              const text1 = "tttttttttt"
-              console.log(text1)
-
-              input.value = text1;
-          });
-      }
-</script> 
-
+  function copyToTextarea(text) {
+    var textarea1 = document.getElementById('txt-input');
+    var sentence = text.replace(/\n/g, ' ');
+    textarea1.value = JSON.stringify(sentence) + '\n';
+    const textarea = document.getElementById('replyy');
+    const button = document.getElementById('myButton');
+    const input = document.getElementById('i');
+    console.log(input);
+    button.addEventListener('click', () => {
+      const text1 = "tttttttttt";
+      console.log(text1);
+      input.value = text1;
+    });
+  }
+</script>
 
 {% endblock %}
-{% comment %} subtitles[current_id] = {
-      "ID": current_id,
-      "start_time": start_time,
-      "end_time": end_time,
-      "sentence": "\n".join(current_text),
-  } {% endcomment %}
-
-
-
-{% comment %} <button> create srt  {% endcomment %}
-
-

@@ -13,6 +13,7 @@
     <h2>{{ out.publish }}</h2>
     <h2>{{ out.deliverytime }}</h2>
     <h2><a href="/media/{{ out.fileEN }}">{{ out.fileEN }}</a></h2>
+    <h2><a href="/media/{{ out.fileAR }}">{{ out.fileAR }}</a></h2>
     {% comment %} <a href="{%url 'edit_project' out.pk %}">update</a> {% endcomment %}
     {% comment %} <button type="submit" id="btn" class="btn">Submit</button> {% endcomment %}
     <button onclick="window.location.href='{% url 'translation:test' out.pk %}'">detials</button>
