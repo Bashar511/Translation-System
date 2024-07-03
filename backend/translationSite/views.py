@@ -37,7 +37,7 @@ def create (request):
         if form.is_valid() :
             form_instance = form.save(commit=False)
             form_instance.author=request.user
-            srt_content = "1\n00:00:00,000 --> 00:00:05,000\n"  
+            srt_content = ""  
             file_name = f"{title}.srt"
             form_instance.fileAR.save(file_name, ContentFile(srt_content))
             form_instance.save()
@@ -69,6 +69,7 @@ def test(request,x):
     processed_fileAR_before =parse_srt(fileAR.path) 
     processed_fileAR_after={}
     
+    #to be fixed
     for key, value in processed_fileEN.items():
             processed_fileAR_after[key]= {
             "ID": key,
@@ -82,7 +83,7 @@ def test(request,x):
         try:
             number=request.POST['number']
         except MultiValueDictKeyError:
-            number=2
+            number=1
             
         try:
             decision=request.POST['final_decision']

@@ -27,6 +27,7 @@ def signup(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
+                #to be fixed
             return redirect('translation:browse')  # Redirect to browse_projects view
     else:
         user_form = UserRegistrationForm()
