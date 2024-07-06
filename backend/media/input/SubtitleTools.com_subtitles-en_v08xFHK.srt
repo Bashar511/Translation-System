@@ -1,0 +1,823 @@
+﻿1
+00:00:02,240 --> 00:00:06,480
+In this video, we will continue with the overview of scrum,
+
+2
+00:00:06,480 --> 00:00:09,430
+and discuss roles and events.
+
+3
+00:00:09,740 --> 00:00:14,020
+We will start by discussing scrum roles.
+
+4
+00:00:14,600 --> 00:00:18,985
+A scrum team is made up of three roles: product owner,
+
+5
+00:00:18,985 --> 00:00:22,380
+scrum master, and development team.
+
+6
+00:00:22,790 --> 00:00:26,250
+The scrum team is made up of cross-functional
+
+7
+00:00:26,250 --> 00:00:30,680
+team members allowing it to complete stories within the team.
+
+8
+00:00:31,100 --> 00:00:35,100
+It is flexible and adaptable with members willing to
+
+9
+00:00:35,100 --> 00:00:39,425
+help out where needed and continuously learning new things.
+
+10
+00:00:39,425 --> 00:00:41,570
+It is self-organizing.
+
+11
+00:00:41,570 --> 00:00:46,670
+The team is responsible for deciding how to organize and do it's work.
+
+12
+00:00:47,090 --> 00:00:50,870
+Stakeholders are not members of the scrum team,
+
+13
+00:00:50,870 --> 00:00:54,475
+but are interested in the success of the project.
+
+14
+00:00:54,475 --> 00:00:58,730
+There are internal stakeholders such as company managers,
+
+15
+00:00:58,730 --> 00:01:03,555
+executives or other scrum teams that rely on the work of the scrum team.
+
+16
+00:01:03,555 --> 00:01:07,370
+There are also stakeholders that are external to
+
+17
+00:01:07,370 --> 00:01:12,000
+the organization such as customers, partners, and investors.
+
+18
+00:01:12,480 --> 00:01:15,860
+The product owner is the member of the scrum team
+
+19
+00:01:15,860 --> 00:01:19,115
+who is responsible for communicating the product vision.
+
+20
+00:01:19,115 --> 00:01:22,045
+The stakeholders and the scrum team need to have
+
+21
+00:01:22,045 --> 00:01:25,825
+an understanding of the product vision in order to work effectively.
+
+22
+00:01:25,825 --> 00:01:31,170
+The product owner is also responsible for maximizing the value of each increment.
+
+23
+00:01:31,170 --> 00:01:35,730
+Each feature that the development team works on should be of high value.
+
+24
+00:01:35,730 --> 00:01:39,690
+The product owner is responsible for the product backlog.
+
+25
+00:01:39,690 --> 00:01:42,080
+Others may help with the product backlog,
+
+26
+00:01:42,080 --> 00:01:45,315
+but the product owner is responsible for it.
+
+27
+00:01:45,315 --> 00:01:49,570
+Stakeholders primarily interact with the product owner.
+
+28
+00:01:49,570 --> 00:01:52,660
+The product owner represents the stakeholders when they are not
+
+29
+00:01:52,660 --> 00:01:56,305
+part of the discussion such as during scrum team meetings.
+
+30
+00:01:56,305 --> 00:02:01,720
+The product owner is accountable to the stakeholders for the success of the project.
+
+31
+00:02:03,180 --> 00:02:06,880
+The scrum master is the member of the scrum team who is
+
+32
+00:02:06,880 --> 00:02:10,335
+primarily responsible for promoting and supporting scrum,
+
+33
+00:02:10,335 --> 00:02:13,450
+for scrum team members as well as stakeholders.
+
+34
+00:02:13,450 --> 00:02:16,510
+It is up to the scrum master to ensure that everyone
+
+35
+00:02:16,510 --> 00:02:20,385
+understands how and why things are done a certain way.
+
+36
+00:02:20,385 --> 00:02:26,405
+The scrum master is also responsible for the day-to-day effectiveness of the scrum team.
+
+37
+00:02:26,405 --> 00:02:32,290
+This includes ensuring that the team is reaching it's goals and continuously improving.
+
+38
+00:02:32,680 --> 00:02:37,290
+The scrum master is responsible for protecting the focus of the team.
+
+39
+00:02:37,290 --> 00:02:40,630
+This may mean helping to remove bottlenecks or ensuring that
+
+40
+00:02:40,630 --> 00:02:44,630
+those outside are interacting with the team in helpful ways.
+
+41
+00:02:44,630 --> 00:02:47,480
+In general, scrum masters do what they need to
+
+42
+00:02:47,480 --> 00:02:51,240
+do to allow team members to focus on their work.
+
+43
+00:02:52,900 --> 00:02:58,760
+The scrum master is also responsible for increasing the transparency of the project.
+
+44
+00:02:58,760 --> 00:03:03,385
+There should be no surprises about the current status of the project.
+
+45
+00:03:03,385 --> 00:03:08,460
+The scrum master's tasks vary by project and from day-to-day.
+
+46
+00:03:08,460 --> 00:03:15,625
+Typical tasks include coaching the scrum team and stakeholders on scrum and agile,
+
+47
+00:03:15,625 --> 00:03:18,695
+helping to remove blocking issues,
+
+48
+00:03:18,695 --> 00:03:25,600
+facilitating scrum events, configuring scrum artifacts,
+
+49
+00:03:25,600 --> 00:03:29,290
+and monitoring sprint progress.
+
+50
+00:03:29,570 --> 00:03:35,175
+This distinction of the product owner and scrum master roles should now be pretty clear.
+
+51
+00:03:35,175 --> 00:03:38,835
+The product owner is responsible for the value of the product.
+
+52
+00:03:38,835 --> 00:03:43,660
+The scrum master is primarily responsible for the effectiveness of the team.
+
+53
+00:03:43,660 --> 00:03:46,810
+You can think of this both as a divide and conquer
+
+54
+00:03:46,810 --> 00:03:50,080
+approach because the work of the roles is so different.
+
+55
+00:03:50,080 --> 00:03:53,890
+Also, as a checks and balances approach because combining
+
+56
+00:03:53,890 --> 00:03:57,690
+the roles could put too much weight on one of the responsibilities.
+
+57
+00:03:57,690 --> 00:04:02,780
+The separate roles lead to greater team success and sustainability.
+
+58
+00:04:03,660 --> 00:04:06,885
+The development team is a cross-functional,
+
+59
+00:04:06,885 --> 00:04:10,210
+adaptive team that does the work of the project.
+
+60
+00:04:10,210 --> 00:04:13,770
+Responsibilities of the development team include:
+
+61
+00:04:13,770 --> 00:04:17,870
+estimating issues- this is usually done using story points,
+
+62
+00:04:17,870 --> 00:04:20,715
+but other estimation methods can be used;
+
+63
+00:04:20,715 --> 00:04:23,420
+deciding on how much work can be done in
+
+64
+00:04:23,420 --> 00:04:28,615
+the sprint- only the development team can decide how much work to take out.
+
+65
+00:04:28,615 --> 00:04:31,130
+It is assumed that the development team is in
+
+66
+00:04:31,130 --> 00:04:35,045
+the best position to forecast how much work the issues take.
+
+67
+00:04:35,045 --> 00:04:38,760
+Deciding how to organize to do the work of the team-
+
+68
+00:04:38,760 --> 00:04:43,345
+this is because the team is an empowered, self-organizing team;
+
+69
+00:04:43,345 --> 00:04:48,280
+creating the increment of each sprint; and finally,
+
+70
+00:04:48,280 --> 00:04:50,810
+the development team are the only members allowed
+
+71
+00:04:50,810 --> 00:04:53,995
+to modify the sprint backlog during the sprint.
+
+72
+00:04:53,995 --> 00:04:59,850
+This is sometimes necessary as the team learns and adjusts as it is building.
+
+73
+00:05:00,440 --> 00:05:06,085
+The Scrum Guide recommends having from three to nine members of the development team.
+
+74
+00:05:06,085 --> 00:05:09,380
+Fewer than three members decreases the productivity and
+
+75
+00:05:09,380 --> 00:05:13,515
+quality created by a cross-functional group of people working together.
+
+76
+00:05:13,515 --> 00:05:18,415
+More than nine members tends to increase the amount of coordination required.
+
+77
+00:05:18,415 --> 00:05:22,480
+Jeff Bezos at Amazon refers to two pizza teams,
+
+78
+00:05:22,480 --> 00:05:25,865
+meaning two pizzas should be able to feed the entire team.
+
+79
+00:05:25,865 --> 00:05:28,285
+To scale scrum to more than nine people,
+
+80
+00:05:28,285 --> 00:05:31,760
+it is usually better to create multiple teams.
+
+81
+00:05:32,260 --> 00:05:36,630
+Next, we will discuss scrum events.
+
+82
+00:05:37,270 --> 00:05:40,895
+A sprint contains four types of events.
+
+83
+00:05:40,895 --> 00:05:45,680
+You may also hear events referred to as ceremonies or simply meetings.
+
+84
+00:05:45,680 --> 00:05:48,350
+The events are the sprint planning meeting,
+
+85
+00:05:48,350 --> 00:05:51,345
+the daily standups, the sprint review,
+
+86
+00:05:51,345 --> 00:05:53,295
+and the sprint retrospective.
+
+87
+00:05:53,295 --> 00:05:58,550
+Scrum events occur at regular intervals and minimize the need for other meetings.
+
+88
+00:05:58,550 --> 00:06:02,520
+These events are designed to maximize the opportunities for feedback,
+
+89
+00:06:02,520 --> 00:06:06,435
+and continuous learning, and are a key part of achieving agility.
+
+90
+00:06:06,435 --> 00:06:11,140
+In between these meetings is where the work of the issues of the sprint is completed.
+
+91
+00:06:11,140 --> 00:06:14,610
+We will discuss each of these meetings separately.
+
+92
+00:06:15,140 --> 00:06:19,985
+All of the scrum meetings have some common characteristics.
+
+93
+00:06:19,985 --> 00:06:24,980
+The meetings have a fixed maximum time limit and no minimum time limit.
+
+94
+00:06:24,980 --> 00:06:28,150
+Meetings can never go over their allotted time,
+
+95
+00:06:28,150 --> 00:06:32,390
+but they can be ended early if the purpose of the meeting is achieved.
+
+96
+00:06:32,390 --> 00:06:36,995
+The meetings are primarily to plan, inspect, and adapt.
+
+97
+00:06:36,995 --> 00:06:40,510
+In agile projects, the planning is distributed throughout
+
+98
+00:06:40,510 --> 00:06:45,295
+the project rather than the mostly upfront planning of waterfall projects.
+
+99
+00:06:45,295 --> 00:06:49,310
+These meetings are an important part of that distributed planning.
+
+100
+00:06:49,310 --> 00:06:52,300
+The meetings are used to inspect the project and
+
+101
+00:06:52,300 --> 00:06:55,305
+adapt with the team is doing based on that inspection.
+
+102
+00:06:55,305 --> 00:07:00,540
+This is a key part of increasing transparency and continuous improvement.
+
+103
+00:07:00,540 --> 00:07:04,485
+The meetings are primarily about the team collaborating,
+
+104
+00:07:04,485 --> 00:07:06,705
+not about updating status.
+
+105
+00:07:06,705 --> 00:07:08,280
+The work is visualized,
+
+106
+00:07:08,280 --> 00:07:11,590
+so you don't need a meeting to see the status.
+
+107
+00:07:11,750 --> 00:07:16,795
+It is the responsibility of every team member to ensure that meetings have
+
+108
+00:07:16,795 --> 00:07:21,150
+value and to help modify them to increase their value if necessary.
+
+109
+00:07:21,150 --> 00:07:23,530
+If the discussion moves in a direction that
+
+110
+00:07:23,530 --> 00:07:26,940
+becomes a value to only a portion of the participants,
+
+111
+00:07:26,940 --> 00:07:31,040
+it should be moved to a later time outside of the meeting.
+
+112
+00:07:32,750 --> 00:07:37,670
+The sprint planning meeting is held at the start of a sprint.
+
+113
+00:07:37,670 --> 00:07:41,580
+The entire scrum team attends the meeting.
+
+114
+00:07:42,050 --> 00:07:47,165
+The duration of the meeting is typically four hours for a two week sprint.
+
+115
+00:07:47,165 --> 00:07:49,175
+If your sprints are four weeks long,
+
+116
+00:07:49,175 --> 00:07:52,130
+you can expect this meeting to be twice as long.
+
+117
+00:07:52,130 --> 00:07:56,670
+The purpose of the meeting is to plan the work of the sprint.
+
+118
+00:07:57,290 --> 00:08:03,510
+The output of the meeting is an agreed upon sprint goal and a sprint backlog.
+
+119
+00:08:05,510 --> 00:08:08,900
+Before the meeting, the product owner usually has
+
+120
+00:08:08,900 --> 00:08:13,625
+a proposed sprint goal and a minimum set of issues that accomplish the goal.
+
+121
+00:08:13,625 --> 00:08:16,510
+These preliminary items often come from
+
+122
+00:08:16,510 --> 00:08:20,150
+the product backlog that has been updated during the previous sprints,
+
+123
+00:08:20,150 --> 00:08:23,280
+sprint review, and sprint retrospective meetings.
+
+124
+00:08:23,280 --> 00:08:25,750
+We will discuss these meetings a bit later.
+
+125
+00:08:25,750 --> 00:08:29,455
+During the meeting, the team usually discusses the sprint goal,
+
+126
+00:08:29,455 --> 00:08:31,590
+modifies the sprint backlog,
+
+127
+00:08:31,590 --> 00:08:34,350
+places story point estimates on issues,
+
+128
+00:08:34,350 --> 00:08:39,380
+and adds details to the issues to better describe the specific work to be done.
+
+129
+00:08:39,380 --> 00:08:43,450
+The development team is responsible for estimating the story points for
+
+130
+00:08:43,450 --> 00:08:47,620
+the work and deciding on how much work can be done during the sprint.
+
+131
+00:08:47,620 --> 00:08:50,050
+They need to do enough planning to have
+
+132
+00:08:50,050 --> 00:08:54,010
+an accurate forecast for the amount of work that they will agree to.
+
+133
+00:08:54,010 --> 00:08:59,305
+The development team also creates subtasks for the first few days of the sprint.
+
+134
+00:08:59,305 --> 00:09:02,710
+The subtasks are often a day or less of work.
+
+135
+00:09:02,710 --> 00:09:08,710
+This is an example of an empowered team rather than a command and control based team.
+
+136
+00:09:08,710 --> 00:09:11,690
+The purpose of the meeting has been met when there is
+
+137
+00:09:11,690 --> 00:09:14,865
+an agreed upon sprint goal and sprint backlog.
+
+138
+00:09:14,865 --> 00:09:17,720
+The sprint backlog contains the issues that
+
+139
+00:09:17,720 --> 00:09:20,810
+the development team has agreed to complete during the sprint,
+
+140
+00:09:20,810 --> 00:09:24,060
+as well as a plan for completing that work.
+
+141
+00:09:25,400 --> 00:09:29,450
+The daily standup meeting is also called the daily scrum.
+
+142
+00:09:29,450 --> 00:09:32,805
+It is a planning meeting that occurs everyday
+
+143
+00:09:32,805 --> 00:09:37,060
+and the participants usually stand as a reminder that it's a short meeting.
+
+144
+00:09:37,060 --> 00:09:42,790
+The meeting usually takes place in the same location at the same time everyday.
+
+145
+00:09:42,960 --> 00:09:47,780
+The development team are the primary attendees for the daily standup.
+
+146
+00:09:47,780 --> 00:09:49,680
+Others may attend the meetings,
+
+147
+00:09:49,680 --> 00:09:52,730
+but are usually asked to listen only.
+
+148
+00:09:52,970 --> 00:09:57,750
+The meeting usually last 15 minutes or less.
+
+149
+00:09:58,420 --> 00:10:03,470
+The purpose of the meeting is to inspect recent progress toward the sprint goal,
+
+150
+00:10:03,470 --> 00:10:04,910
+plan the day's work,
+
+151
+00:10:04,910 --> 00:10:07,865
+and identify any impediments to the team.
+
+152
+00:10:07,865 --> 00:10:11,220
+The team usually makes plans to resolve the impediments,
+
+153
+00:10:11,220 --> 00:10:15,050
+but the discussion often moves to after the meeting.
+
+154
+00:10:15,530 --> 00:10:19,120
+The output of the meeting is the plan for the day.
+
+155
+00:10:19,120 --> 00:10:21,380
+It's important that the daily standup is
+
+156
+00:10:21,380 --> 00:10:24,680
+a collaborative meeting and not simply a status update.
+
+157
+00:10:24,680 --> 00:10:26,420
+The team collaborates to make
+
+158
+00:10:26,420 --> 00:10:29,725
+the best decisions for the day given the latest information.
+
+159
+00:10:29,725 --> 00:10:33,465
+They usually decide on who will work on specific issues,
+
+160
+00:10:33,465 --> 00:10:36,995
+to plan slightly changes after every daily standup.
+
+161
+00:10:36,995 --> 00:10:39,150
+This is continuous improvement.
+
+162
+00:10:39,150 --> 00:10:43,995
+The link at the bottom is a link from the atlassian team playbook on standups.
+
+163
+00:10:43,995 --> 00:10:46,960
+You can find more information there.
+
+164
+00:10:47,470 --> 00:10:51,755
+The sprint review meeting occurs near the end of the sprint.
+
+165
+00:10:51,755 --> 00:10:57,710
+It is an informal meeting that includes the scrum team and interested stakeholders.
+
+166
+00:10:57,710 --> 00:11:02,800
+It is typically a two hour meeting for two week sprints.
+
+167
+00:11:03,040 --> 00:11:07,220
+The purpose of the meeting is to inspect the increment that was just
+
+168
+00:11:07,220 --> 00:11:11,700
+created in the sprint and to collaboratively update the product backlog.
+
+169
+00:11:11,700 --> 00:11:15,290
+This is a meeting with a lot of feedback on the project and
+
+170
+00:11:15,290 --> 00:11:19,640
+includes a brainstorming session to help decide what to do next.
+
+171
+00:11:19,640 --> 00:11:24,515
+The output of the meeting is a first-pass at the next sprint's backlog.
+
+172
+00:11:24,515 --> 00:11:28,240
+By the time the sprint planning meeting happens for the following sprint,
+
+173
+00:11:28,240 --> 00:11:32,490
+the team already has a good idea of what they will be working on.
+
+174
+00:11:34,900 --> 00:11:39,785
+The sprint retrospective is the last event of the sprint.
+
+175
+00:11:39,785 --> 00:11:43,200
+The scrum team attends the retrospective.
+
+176
+00:11:43,200 --> 00:11:48,900
+The meeting typically takes 90 minutes for a two week sprint.
+
+177
+00:11:49,000 --> 00:11:54,740
+The purpose of the meeting is for the team to inspect itself including it's processes,
+
+178
+00:11:54,740 --> 00:11:57,055
+tools, and team interaction.
+
+179
+00:11:57,055 --> 00:12:01,520
+The retrospective is a positive meeting containing constructive feedback.
+
+180
+00:12:01,520 --> 00:12:05,030
+Everyone should always remember that they are part of a team.
+
+181
+00:12:05,030 --> 00:12:09,620
+The scrum master usually helps make sure that this is a positive meeting.
+
+182
+00:12:09,620 --> 00:12:13,280
+The team usually discusses what they should keep doing,
+
+183
+00:12:13,280 --> 00:12:14,990
+what they should stop doing,
+
+184
+00:12:14,990 --> 00:12:16,740
+and what they should start doing.
+
+185
+00:12:16,740 --> 00:12:20,905
+The meeting is about continuously improving the team.
+
+186
+00:12:20,905 --> 00:12:23,480
+The output of the meeting is to add
+
+187
+00:12:23,480 --> 00:12:27,680
+one or more improvement related issues to the next sprint's backlog.
+
+188
+00:12:27,680 --> 00:12:31,489
+It's important that the team spent some of it's time on these issues,
+
+189
+00:12:31,489 --> 00:12:34,730
+rather than exclusively building the product.
+
+190
+00:12:34,890 --> 00:12:40,250
+The link at the bottom is from the atlassian team playbook on retrospectives.
+
+191
+00:12:40,250 --> 00:12:43,120
+You can find more information there.
+
+192
+00:12:45,590 --> 00:12:50,000
+Here's a summary of the four meetings related to a sprint.
+
+193
+00:12:50,000 --> 00:12:53,000
+It's important to always make sure that the meetings have
+
+194
+00:12:53,000 --> 00:12:58,490
+high value and the team should focus on continuously improving their meetings.
+
+195
+00:12:58,490 --> 00:13:04,155
+Notice that the next sprint goal and sprint backlog start to form in the sprint review.
+
+196
+00:13:04,155 --> 00:13:07,760
+The retrospective usually adds one or more issues.
+
+197
+00:13:07,760 --> 00:13:12,440
+This forms the starting sprint backlog for the sprint planning meeting.
+
+198
+00:13:13,920 --> 00:13:17,780
+Here is a review of what we've discussed in this video.
+
+199
+00:13:17,780 --> 00:13:20,500
+Scrum roles include the product owner,
+
+200
+00:13:20,500 --> 00:13:25,510
+scrum master, development team members, and stakeholders.
+
+201
+00:13:26,010 --> 00:13:29,895
+Scrum meetings include the sprint planning meeting,
+
+202
+00:13:29,895 --> 00:13:32,420
+daily standups, the sprint review,
+
+203
+00:13:32,420 --> 00:13:34,910
+and the sprint retrospective.
+
+204
+00:13:36,350 --> 00:13:39,250
+Now, it's time to work on some of the topics
+
+205
+00:13:39,250 --> 00:13:41,995
+discussed in this video and in the previous video.
+
+206
+00:13:41,995 --> 00:13:45,440
+Separate hands on instructions are provided.

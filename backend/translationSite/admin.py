@@ -9,10 +9,10 @@ from .models import *
 
 @admin.register(project1)
 class ProjectAdmin(admin.ModelAdmin):
-        list_display = ['title', 'author', 'publish']
+        list_display = ['title', 'owner', 'publish']
         list_filter = ['deliverytime', 'publish']
-        search_fields = ['title', 'author']
-        raw_id_fields = ['author']
+        search_fields = ['title', 'owner']
+        raw_id_fields = ['owner']
         date_hierarchy = 'publish'
         ordering = [ 'publish','deliverytime']
 

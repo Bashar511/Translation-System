@@ -26,7 +26,7 @@ def instant(request):
 
 @login_required
 def browse(request):
-    allproject=project1.objects.filter(author=request.user)
+    allproject=project1.objects.filter(owner=request.user)
     return render(request,'browse_projects.html',{'form_out':allproject})
 
 
@@ -36,7 +36,7 @@ def create (request):
         title = request.POST.get('title')
         if form.is_valid() :
             form_instance = form.save(commit=False)
-            form_instance.author=request.user
+            form_instance.owner=request.user
             srt_content = "1\n00:00:00,000 --> 00:00:05,000\n"  
             file_name = f"{title}.srt"
             form_instance.fileAR.save(file_name, ContentFile(srt_content))

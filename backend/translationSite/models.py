@@ -5,7 +5,9 @@ from django.contrib.auth.models import User
 # db for project
 class project1(models.Model):
         title=models.CharField(max_length=50)
-        author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_posts')
+        # author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_posts')
+        owner = models.ForeignKey(User, related_name='owned_projects', on_delete=models.CASCADE)
+
         publish = models.DateTimeField(default=timezone.now)
         deliverytime=models.DateField()
         fileAR=models.FileField(upload_to='input',null=True)
@@ -21,7 +23,11 @@ class project1(models.Model):
         def __str__(self):
             return self.title
 
-
+        class Meta:
+                permissions = [
+                        ("can_view_project", "Can view project"),
+                        ("can_edit_project", "Can edit project"),
+        ]
 
 # class output_AI1 (models.Model):
 #         title=models.ForeignKey(project1,related_name='output',on_delete=models.CASCADE)
@@ -54,5 +60,15 @@ class project1(models.Model):
 #             return title 
         
 
+
+
+# from django.contrib.auth.models import User
+# from django.db import models
+
+# class Project(models.Model):
+#     name = models.CharField(max_length=255)
+#     owner = models.ForeignKey(User, related_name='owned_projects', on_delete=models.CASCADE)
+
+   
 
 
