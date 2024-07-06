@@ -69,6 +69,7 @@ def test(request,x):
     processed_fileAR_before =parse_srt(fileAR.path) 
     processed_fileAR_after={}
     
+    #to be fixed
     for key, value in processed_fileEN.items():
             processed_fileAR_after[key]= {
             "ID": key,
@@ -82,7 +83,7 @@ def test(request,x):
         try:
             number=request.POST['number']
         except MultiValueDictKeyError:
-            number=2
+            number=1
             
         try:
             decision=request.POST['final_decision']
