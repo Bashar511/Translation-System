@@ -9,6 +9,7 @@ urlpatterns = [
     path('create_project/', views.create, name='create'),
     path('current_project/<int:id>/', views.PostUpdateView.as_view(), name='current'),
     path('test/<int:x>/', views.test, name='test'),
+    path('delete/<int:x>/', views.delete, name='delet'),
 
 
 ]

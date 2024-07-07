@@ -21,13 +21,14 @@ def signup(request):
             new_user = user_form.save(commit=False)
             new_user.set_password(user_form.cleaned_data['password'])
             new_user.save()
-            Profile.objects.create(user=new_user)
+            # Profile.objects.create(user=new_user)
             username = user_form.cleaned_data.get('username')
-            password = user_form.cleaned_data.get('password1')
+            password = user_form.cleaned_data.get('password')
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                #to be fixed
+                
+
             return redirect('translation:browse')  # Redirect to browse_projects view
     else:
         user_form = UserRegistrationForm()

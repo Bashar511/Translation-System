@@ -17,6 +17,7 @@
     {% comment %} <a href="{%url 'edit_project' out.pk %}">update</a> {% endcomment %}
     {% comment %} <button type="submit" id="btn" class="btn">Submit</button> {% endcomment %}
     <button onclick="window.location.href='{% url 'translation:test' out.pk %}'">detials</button>
+    <button onclick="window.location.href='{% url 'translation:delet' out.pk %}'">delete</button>
 
     {% endfor %}
   </div>

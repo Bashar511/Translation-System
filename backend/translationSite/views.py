@@ -118,3 +118,8 @@ def test(request,x):
 
 
 
+
+def delete(request,x):
+    project = get_object_or_404(project1, id=x)
+    project.delete()
+    return redirect('translation:browse')  
