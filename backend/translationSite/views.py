@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import (UpdateView)
 from django.utils.datastructures import MultiValueDictKeyError
 from django.core.files.base import ContentFile
+from django.urls import reverse
 
 def instant(request):
     if request.method == 'POST':
@@ -48,6 +49,7 @@ def create (request):
             file_name = f"{title}.srt"
             form_instance.fileAR.save(file_name, ContentFile(srt_content))
             form_instance.save()
+            return redirect(reverse('translation:browse'))
         else:
             return render(request,'create_project.html',{'form':form})
     form=projectForm()
