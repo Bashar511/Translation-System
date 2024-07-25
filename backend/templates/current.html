@@ -1,24 +1,16 @@
 {% extends "base.html" %} 
 {% block title %} project {% endblock %} 
 {% block content %}
-
-
-
-  {% csrf_token %}
-{% comment %} 
-  <h1>{{ details.title }}</h1>
-  <p class="date">
-  Published {{ details.publish }} by {{ details.author }}
-  </p>       {% endcomment %}
-  <form method="post" novalidate class="mb-4"enctype="multipart/form-data">
+{% csrf_token %}
+<form method="post" novalidate class="mb-4"enctype="multipart/form-data">
     {% csrf_token %}
     <textarea name="title" id="title">{{ updateform.title }}</textarea>
-
-    <div><label for="id_fileEN">FileEN:{{ updateform.fileEN }}</label>
+    <div>
+      <label for="id_fileEN">FileEN:{{ updateform.fileEN }}</label>
       <input type="file" name="fileEN" required="" id="id_fileEN">
     </div>
-   <textarea name="deliverytime" id="deliverytime">{{ updateform.deliverytime }}</textarea>
-<button type="submit" class="btn btn-success">Save changes</button>
-  </form>
+    <textarea name="deliverytime" id="deliverytime">{{ updateform.deliverytime }}</textarea>
+    <button type="submit" class="btn btn-success">Save changes</button>
+</form>
 
 {% endblock %}

@@ -66,7 +66,7 @@ class PostUpdateView(UpdateView):
         updateform=form.save(commit=False)
         updateform.updated_dt = timezone.now()
         updateform.save()
-        return redirect('browse_projects.html')
+        return redirect(reverse('translation:browse'))
 
 
 
