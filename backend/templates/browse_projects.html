@@ -15,7 +15,7 @@
     <h2><a href="/media/{{ out.fileEN }}">{{ out.fileEN }}</a></h2>
     <h2><a href="/media/{{ out.fileAR }}">{{ out.fileAR }}</a></h2>
 
-    <button onclick="window.location.href='{% url 'translation:test' out.pk %}'">detials</button>
+    <button onclick="window.location.href='{% url 'translation:details' out.pk %}'">detials</button>
     <button onclick="window.location.href='{% url 'translation:delet' out.pk %}'">delete</button>
 
     {% endfor %}

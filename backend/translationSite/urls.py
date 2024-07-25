@@ -8,7 +8,7 @@ urlpatterns = [
     path('browse_projects/', views.browse, name='browse'),
     path('create_project/', views.create, name='create'),
     path('current_project/<int:id>/', views.PostUpdateView.as_view(), name='current'),
-    path('test/<int:x>/', views.test, name='test'),
+    path('details/<int:x>/', views.details, name='details'),
     path('delete/<int:x>/', views.delete, name='delet'),
     path('grant_permission/',views.grant_permission, name="grant_permission"),
 

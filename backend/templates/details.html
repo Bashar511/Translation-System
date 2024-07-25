@@ -24,7 +24,7 @@
       <textarea name="final_decision" id="txt-input" class="txt-input" placeholder="Insert translate"></textarea>
       <label for="number">ID</label>
       <input type="number" id="number" name="number" step="1" min="1" placeholder="Enter the sentence number" required>
-      <button type="submit" id="btn" class="btn">Submit</button>
+      <button type="submit" id="btn" class="btn">SAVE</button>
     </form>
   </div>
 </div>
@@ -43,7 +43,6 @@
     <td>{{ value.start_time }}</td>
     <td>{{ value.end_time }}</td>
     <td onclick="copyToTextarea('{{ value.sentence }}')">{{ value.sentence }}</td>
-    {% comment %} |escape|linebreaks {% endcomment %}
     <td id="i">
       {% for key1, value1 in fileAR.items %}
           {% if key == key1 %}
@@ -64,10 +63,8 @@
     const textarea = document.getElementById('replyy');
     const button = document.getElementById('myButton');
     const input = document.getElementById('i');
-    console.log(input);
     button.addEventListener('click', () => {
       const text1 = "tttttttttt";
-      console.log(text1);
       input.value = text1;
     });
   }

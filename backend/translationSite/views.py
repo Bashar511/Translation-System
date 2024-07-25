@@ -70,7 +70,7 @@ class PostUpdateView(UpdateView):
 
 
 
-def test(request,x):
+def details(request,x):
     project = get_object_or_404(Project,pk=x)
     fileEN=project.fileEN
     fileAR=project.fileAR
@@ -123,7 +123,7 @@ def test(request,x):
             'decision':'',
             'ID':1,
         }
-    return render(request, "test.html", context)
+    return render(request, "details.html", context)
 
 
 
