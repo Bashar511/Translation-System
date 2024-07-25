@@ -7,9 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-
-  
-   </head>
+</head>
 <body>
     <div id="header">
         <span class="logo">logo</span>
@@ -21,11 +19,8 @@
                 <li {% if section == 'create' %} class="selected" {% endif %}>
                     <a href="{% url 'translation:create' %}">create</a>
                 </li>
-
-                
-    
                 <li {% if section == 'project' %} class="selected" {% endif %}>
-                    <a href="#">project2</a>
+                    <a href="{% url 'translation:grant_permission' %}">grant_permission</a>
                 </li>
             </ul>
         {% endif %}

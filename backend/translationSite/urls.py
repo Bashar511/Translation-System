@@ -10,6 +10,7 @@ urlpatterns = [
     path('current_project/<int:id>/', views.PostUpdateView.as_view(), name='current'),
     path('test/<int:x>/', views.test, name='test'),
     path('delete/<int:x>/', views.delete, name='delet'),
+    path('grant_permission/',views.grant_permission, name="grant_permission"),
 
 
 ]

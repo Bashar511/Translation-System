@@ -4,10 +4,7 @@ from .models import *
 # register tables from db in admin panel
 # Organize the display of fild in admin panel
 
-
-
-
-@admin.register(project1)
+@admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
         list_display = ['title', 'owner', 'publish']
         list_filter = ['deliverytime', 'publish']
@@ -15,20 +12,3 @@ class ProjectAdmin(admin.ModelAdmin):
         raw_id_fields = ['owner']
         date_hierarchy = 'publish'
         ordering = [ 'publish','deliverytime']
-
-
-
-# @admin.register(output_AI1)
-# class outputAIAdmin(admin.ModelAdmin):
-#         list_display = ['title']
-#         search_fields = ['title',]
-
-
-# @admin.register(processed_output_AI)
-# class processed_output_AI_Admin(admin.ModelAdmin):
-#         list_display = ['sentenceEN', 'sentenceAR', 'starttime','endtime','status']
-#         list_filter = ['starttime', 'sentenceEN']
-#         search_fields = ['starttime', 'sentenceEN']
-#         ordering = ['starttime']
-
-

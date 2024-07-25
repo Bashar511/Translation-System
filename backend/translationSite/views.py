@@ -1,5 +1,4 @@
 from django.shortcuts import render ,get_object_or_404,redirect
-from django.http import HttpResponse
 from .api import hel_en2ar, bart_en2ar
 from .forms import *
 from .subtitle_parser import *
@@ -24,10 +23,18 @@ def instant(request):
         }
     return render(request, "instant_translation.html", context)
 
+# @login_required
+# def browse(request):
+#     allproject=Project.objects.filter(owner=request.user)
+#     return render(request,'browse_projects.html',{'form_out':allproject})
 @login_required
 def browse(request):
-    allproject=project1.objects.filter(owner=request.user)
-    return render(request,'browse_projects.html',{'form_out':allproject})
+    owned_projects = Project.objects.filter(owner=request.user)
+    member_projects = Project.objects.filter(
+        projectmember__granted_to=request.user
+    )
+    all_projects = (owned_projects | member_projects).distinct()
+    return render(request, 'browse_projects.html', {'form_out': all_projects})
 
 
 def create (request):
@@ -48,7 +55,7 @@ def create (request):
 
 
 class PostUpdateView(UpdateView):
-    model = project1
+    model = Project
     fields = ('title','fileEN','deliverytime',)
     template_name = 'current.html'
     context_object_name = 'updateform'
@@ -62,7 +69,7 @@ class PostUpdateView(UpdateView):
 
 
 def test(request,x):
-    project = get_object_or_404(project1,pk=x)
+    project = get_object_or_404(Project,pk=x)
     fileEN=project.fileEN
     fileAR=project.fileAR
     processed_fileEN =parse_srt(fileEN.path) 
@@ -120,6 +127,23 @@ def test(request,x):
 
 
 def delete(request,x):
-    project = get_object_or_404(project1, id=x)
+    project = get_object_or_404(Project, id=x)
     project.delete()
     return redirect('translation:browse')  
+
+
+
+def grant_permission(request):
+    if request.method == 'POST':
+        form = PermissionForm(request.POST,user=request.user)
+        if form.is_valid():
+                permission = form.save(commit=False)
+                if permission.project.owner == request.user:
+                    permission.save()
+                    return redirect('translation:browse') 
+    else:
+        form = PermissionForm(user=request.user)
+
+    return render(request, 'grant_permission.html', {'form': form})
+
+
