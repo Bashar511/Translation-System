@@ -32,7 +32,7 @@ def bart_en2ar(payload):
         except requests.exceptions.RequestException:
             return "No internet connection"
         if response.status_code == 503:
-            time.sleep(5)
+            time.sleep(10)
             pass
         if response.ok:
             text = json.loads(response.content.decode("utf-8"))
