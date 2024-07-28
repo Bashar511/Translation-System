@@ -149,3 +149,12 @@ def grant_permission(request):
     return render(request, 'grant_permission.html', {'form': form})
 
 
+
+
+def CONTACTUS(request):
+    return render(request,'contact.html')
+
+
+
+def ABOUTUS(request):
+    return render(request,'about.html')
