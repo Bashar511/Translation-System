@@ -7,6 +7,12 @@ from django.contrib.auth import logout
 from django.contrib.auth import authenticate, login
 # Create your views here.
 # 
+
+def HOME(request):
+    return render(request, 'welcome.html')
+
+
+
 def welcome(request):
     # Welcome page with user links
     if request.user.is_authenticated :

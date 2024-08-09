@@ -8,6 +8,7 @@ from translationSite import views as v
 
 urlpatterns = [
     path("",views.welcome,name="welcome" ),
+    path("home/",views.HOME,name="home" ),
     path('about/',v.ABOUTUS, name="ABOUTUS"),
     path('contact/',v.CONTACTUS, name="CONTACTUS"),
     path("home/", include("translationSite.urls",namespace='translation')),

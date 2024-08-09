@@ -1,10 +1,13 @@
 {% extends "base.html" %}
 
+{% load custom_filters %}
+
+{% load static %}
+
+{% block cssfiles %} <link rel="stylesheet" href="{% static 'css/login.css' %}">{% endblock %}
 {% block title %} Login {% endblock %}
 
 {% block content %}
-    <h1>Login</h1>
-
     {% if form.errors %}
         <p>
             Your username and password did not match.
@@ -19,18 +22,33 @@
     {% endif %}
 
     <div class="login-form">
-        <form action="{% url 'authh:login' %}" method="post">
-            {{ form.as_p }}
-            {% csrf_token %}
-            <input type="hidden" name="next" value="{{ next }}">
-            <p><input type="submit" value="Login"></p>
-        </form>
+        <img src="{% static 'images/logo.png'%}" class="logo"/>
+        <h2 class="title">Hello Again!</h2>
 
-        <p>
-            <a href="{% url 'authh:password_reset' %}">
-                Forgotten your password?
-            </a>
-        </p>
+        <form method="post" action="{% url 'authh:login' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="{{ form.username.id_for_label }}">Username</label>
+                {{ form.username|add_class:"form-input" }}
+            </div>
+            <div class="form-group">
+                <label for="{{ form.password.id_for_label }}">Password</label>
+                {{ form.password|add_class:"form-input" }}
+            </div>
+            <p class="forgotDiv">
+                <a href="{% url 'authh:password_reset' %}" class="forgotTxt">
+                    Forgotten your password?
+                </a>
+            </p>
+            <input type="submit" value="login" class="login-btn ">
+        </form>
+        <div>
+            <p class="login-text">First time here? <a href="{% url 'authh:register' %}" class="link">Register</a></p>
+        </div>
+        
+        <footer class="footer">
+          <a href="#">Privacy</a> | <a href="#">Policy</a> | <a href="#">Contact us</a>
+        </footer>
 
     </div>
 {% endblock %}

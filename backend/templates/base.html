@@ -2,53 +2,71 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+<head> 
+        {% block cssfiles %} {% endblock %}
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{% block title %}{% endblock %}</title>
+        <script src="https://kit.fontawesome.com/1c0928d3ce.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/nav.css' %}">
 </head>
-<body>
-    <div id="header">
-        <span class="logo">logo</span>
-        {% if request.user.is_authenticated %}
-            <ul class='menu'>
-                <li {% if section == 'browse' %} class="selected" {% endif %}>
-                    <a href="{% url 'translation:browse' %}">browse</a>
-                </li>                
-                <li {% if section == 'create' %} class="selected" {% endif %}>
-                    <a href="{% url 'translation:create' %}">create</a>
-                </li>
-                <li {% if section == 'project' %} class="selected" {% endif %}>
-                    <a href="{% url 'translation:grant_permission' %}">grant_permission</a>
-                </li>
+<body>  
+        <nav class="menu-container">
+            <input type="checkbox" aria-label="Toggle menu" />
+            <span></span>
+            <span></span>
+            <span></span>
+          
+            <a href="#" class="menu-logo">
+              <img src="{% static 'images/logo.png'%}" alt="logo"/>
+            </a>
+        
+            <div class="menu">
+              <ul>
+                <li> <a href="{% url 'home' %}" {% if section == 'HOME' %} class="selected" {% endif %}> HOME </a> </li>
+                <li> <a href="{% url 'translation:instant' %}" {% if section == 'TRANSLATE' %} class="selected" {% endif %}> TRANSLATE </a> </li>
+                <li> <a href="{% url 'ABOUTUS' %}" {% if section == 'ABOUT US' %} class="selected" {% endif %}> ABOUT US </a> </li>
+                <li> <a href="{% url 'CONTACTUS' %}" {% if section == 'CONTACT' %} class="selected" {% endif %}> CONTACT </a> </li>
+              </ul>
+              
+              <ul>
+                
+                  {% if request.user.is_authenticated %}
+                       hello{{ request.user.first_name|default:request.user.username }}
+                      
+                      
+                      <li {% if section == 'create' %} class="selected" {% endif %}><a href="{% url 'translation:create' %}">create</a></li>
+                      <li {% if section == 'project' %} class="selected" {% endif %}><a href="{% url 'translation:grant_permission' %}">grant_permission</a></li>
+                      <li {% if section == 'ChangePassword' %} class="selected" {% endif %}><a href="{% url 'authh:password_change' %}">password_change</a></li>
+                      <li {% if section == 'EDIT' %} class="selected" {% endif %}><a href="{% url 'authh:edit' %}">edit</a></li>
+                      <li {% if section == 'LOGOUT' %} class="selected" {% endif %}><a href="{% url 'authh:Logout' %}">Logout</a> </li>
+                  {% else %}
+                      <a href="{% url 'authh:login' %}">Login</a>
+                  {% endif %}
+              
+              </ul>
+              
+            </div>
+        </nav>
+
+        
+        
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                    <li class="{{message.tags}}">
+                        {{message|safe}}
+                    </li>
+                    <a href="#" class="close">X</a>
+                {% endfor %}
             </ul>
         {% endif %}
 
-        <span class="user">
-            {% if request.user.is_authenticated %}
-                Hello {{ request.user.first_name|default:request.user.username }}
-                <a href="{% url 'authh:Logout' %}">Logout</a> 
-                or <a href="{% url 'authh:edit' %}">edit</a>
-                or <a href="{% url 'authh:password_change' %}">password_change</a>
-            {% else %}
-                <a href="{% url 'authh:login' %}">Login</a>
-            {% endif %}
-        </span>
 
-    </div>
-    {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <li class="{{message.tags}}">
-                    {{message|safe}}
-                </li>
-                <a href="#" class="close">X</a>
-            {% endfor %}
-        </ul>
-    {% endif %}
-    <div id="content">
-        {% block content %} {% endblock %}
-    </div>
-</body>
+        <div id="content">
+            {% block content %} {% endblock %}
+        </div>
+        
+    </body>
 </html>

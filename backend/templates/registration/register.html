@@ -1,15 +1,23 @@
+
 {% extends "base.html" %}
+{% load static %}
+
+{% block cssfiles %} <link rel="stylesheet" href="{% static 'css/register.css' %}">{% endblock %}
 
 {% block title %} Create an account {% endblock title %}
-
 {% block content %}
-    <h1>Create a new account</h1>
-    <p>Please, sign up using the following form:</p>
-
+<div class="login-form">
+<img src="{% static 'images/logo.png'%}" class="logo"/>
+<h2 class="title">Join us & Become a Translator!</h2>
     <form  method="post">
-        {{user_form.as_p}}
         {% csrf_token %}
-        <p><input type="submit" value="Create an account"></p>
 
-    </form>
+        {{user_form.as_p}}
+        <input type="submit" value="Register" class="register-btn">
+</form>
+<p class="login-text">Already registered? <a href="{% url 'authh:login' %}" class="login-link">Login</a></p>
+  <footer class="footer">
+    <a href="#">Privacy</a> | <a href="#">Policy</a> | <a href="#">Contact us</a>
+  </footer>
+</div>
 {% endblock content%}

@@ -145,3 +145,5 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'authh.authentication.EmailAuthBackend',
 ]
+
+FORM_LABEL_SUFFIX = ''

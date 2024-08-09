@@ -1,0 +1,106 @@
+.login-form {
+    max-width: 480px;
+    width: 100%;
+    margin: 5rem auto;
+    padding: 24px 40px;
+    border-radius: 41px;
+    background-color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    overflow: hidden;
+  }
+  
+  .logo {
+    width: 217px;
+    max-width: 100%;
+    aspect-ratio: 3.1;
+    object-fit: contain;
+  }
+  
+  .title {
+    color: #1883bb;
+    font-size: 24px;
+    margin-top: 39px;
+    margin-bottom: 40px;
+  }
+  
+  .form-group {
+    text-align: left;
+    margin-bottom: 10px;
+  }
+  
+  .form-row {
+    display: flex;
+    gap: 16px;
+  }
+  
+  .form-row .form-group {
+    flex: 1;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 16px;
+  }
+  
+  .form-input {
+    width: 100%;
+    height: 36px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background: #fff;
+    padding: 0 10px;
+  }
+  .form-input:focus {
+    border: 3px solid #1883bb;
+    outline: none;
+  
+  }
+  .login-btn {
+    background-color: #1883bb;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 18px 53px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 25px;
+    margin-left: 8rem;
+    margin-bottom: 2rem;
+  }
+  .forgotDiv{
+      width: 100%;
+      text-align: right;
+      font-size: 16px;
+      margin: 1.2rem 0;
+  }
+  .forgotTxt{
+    color: #a8a7a7;
+  }
+  .forgot-password {
+    color: #a8a7a7 !important;
+    text-align: right; 
+    text-decoration: none;
+}
+  
+  .login-link {
+    color: #1883bb;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  .link {
+    color: #1883bb;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .footer {
+    font-size: 16px;
+    margin-top: 45px;
+  }
+  
+  .footer a {
+    color: #000000;
+    text-decoration: none;
+  }

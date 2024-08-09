@@ -4,11 +4,60 @@ from .models import Profile
 
 # Specify the input fields to register a new user
 class UserRegistrationForm(forms.ModelForm):
-    password = forms.CharField(label= 'password', widget=forms.PasswordInput)
-    password2 = forms.CharField(label= 'Repeat password', widget=forms.PasswordInput)
+    password = forms.CharField(
+        label='Password', 
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-input',
+            'id': 'password',        })
+    )
+    password2 = forms.CharField(
+        label='Confirm password', 
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-input',
+            'id': 'password2',
+        })
+    )
     class Meta:
         model = User
         fields = ['username', 'first_name', 'email']
+        widgets={
+            
+            'email': forms.EmailInput(attrs={
+            'id':'email',
+            'class': 'form-input',
+            
+            }),
+            'username':forms.TextInput(attrs={
+            'id':'username',
+            'class': 'form-input',
+            
+            }),
+            'first_name':forms.TextInput(attrs={
+            'id':'firstname',
+            'class': 'form-input',
+            
+            }),
+            # 'password':forms.PasswordInput(attrs={
+            # 'id':'confirm-password',
+            # 'class': 'form-input',
+            
+            # }),
+            # 'password2':forms.PasswordInput(attrs={
+            # 'id':'confirm-password',
+            # 'class': 'form-input',
+            
+            # }),
+            
+        }
+        
+        
+    def __init__(self, *args, **kwargs):
+        super(UserRegistrationForm, self).__init__(*args, **kwargs)
+        self.fields['username'].label = "Username"
+        self.fields['first_name'].label = "First Name"
+        self.fields['email'].label = "Email"
+    
+    
     
     # to verify the password
     def clean_password2(self):
