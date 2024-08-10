@@ -8,22 +8,20 @@
 {% block title %} Login {% endblock %}
 
 {% block content %}
+<div class="login-form">
+    <img src="{% static 'images/logo.png'%}" id="loginlogo"/>
+    <h2 class="title">Hello Again!</h2>
+
     {% if form.errors %}
-        <p>
+        <p id="logerror">
             Your username and password did not match.
             Please try again
         </p>
 
-    {% else %}
-        <p>
-            Please enter your username and password.
-            If you do not have an account, <a href="{% url 'authh:register' %}">Register here</a>
-        </p>
+        
     {% endif %}
 
-    <div class="login-form">
-        <img src="{% static 'images/logo.png'%}" class="logo"/>
-        <h2 class="title">Hello Again!</h2>
+   
 
         <form method="post" action="{% url 'authh:login' %}">
             {% csrf_token %}
@@ -40,7 +38,9 @@
                     Forgotten your password?
                 </a>
             </p>
+            <div>
             <input type="submit" value="login" class="login-btn ">
+            </div>
         </form>
         <div>
             <p class="login-text">First time here? <a href="{% url 'authh:register' %}" class="link">Register</a></p>
@@ -51,4 +51,137 @@
         </footer>
 
     </div>
+<style>
+    form {
+        overflow:hidden
+    }
+    #logerror{
+        background: #de1710 !important;
+        color: #Fff;
+        display: block;
+        font-size: 0.7em;
+        text-align: left;
+        border-radius:5px;
+        padding: 10px 13px;
+        margin: 2rem 0
+    }
+        #loginlogo {
+            width: 400px;
+            max-width: 100%;
+            aspect-ratio: 3.1;
+            object-fit: contain;
+          }
+          .login-form {
+            max-width: 480px;
+            width: 100%;
+            margin: 55px auto;
+            padding: 0 40px;
+            border-radius: 41px;
+            background-color: #ffffff;
+            text-align: center;
+          }
+          .login-text {
+            font-size: 16px;
+            margin-top: 46px;
+          }
+          
+          .login-link {
+            color: #1883bb;
+            text-decoration: none;
+            font-weight: bold;
+          }
+          
+  
+
+  
+  .title {
+    color: #1883bb;
+    font-size: 24px;
+    margin-top: 39px;
+    margin-bottom: 40px;
+  }
+  
+  .form-group {
+    text-align: left;
+    margin-bottom: 10px;
+  }
+  
+  .form-row {
+    display: flex;
+    gap: 16px;
+  }
+  
+  .form-row .form-group {
+    flex: 1;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 16px;
+  }
+  
+  .form-input {
+    width: 100%;
+    height: 36px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background: #fff;
+    padding: 0 10px;
+  }
+  .form-input:focus {
+    border: 3px solid #1883bb;
+    outline: none;
+  
+  }
+  .login-btn {
+    background-color: #1883bb;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 18px 53px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 25px;
+    margin-left: 8rem;
+    margin-bottom: 2rem;
+  }
+  .forgotDiv{
+      width: 100%;
+      text-align: right;
+      font-size: 16px;
+      margin: 1.2rem 0;
+  }
+  .forgotTxt{
+    color: #a8a7a7;
+  }
+  .forgot-password {
+    color: #a8a7a7 !important;
+    text-align: right; 
+    text-decoration: none;
+}
+  
+  .login-link {
+    color: #1883bb;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  .link {
+    color: #1883bb;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .footer {
+    font-size: 16px;
+    margin-top: 45px;
+  }
+  
+  .footer a {
+    color: #000000;
+    text-decoration: none;
+  }
+
+
+</style>
 {% endblock %}

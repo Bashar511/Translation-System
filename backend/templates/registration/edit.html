@@ -1,14 +1,89 @@
 {% extends "base.html" %}
+{% load static %}
+{% block cssfiles %} <link rel="stylesheet" href="{% static 'css/register.css' %}">{% endblock %}
 
 {% block title %}Edit your account{% endblock %}
 
 {% block content %}
-    <h1>Edit your account</h1>
-    <p>You can edit your account using the following form:</p>
-    <form method="post", enctype="multipart/form-data">
-        {{ user_form.as_p }}
-        {{ profile_form.as_p }}
+<div class="edit-div">
+    <img src="{% static 'images/logo.png'%}" class="logo"/>
+    <h2 class="title">Edit Your Profile</h2>
+    <form class="edit-form" method="post", enctype="multipart/form-data">
+        
         {% csrf_token %}
-        <p><input type="submit" value="Save changes"></p>
+        {{ user_form.as_p }}
+        {% comment %} {{ profile_form.as_p }} {% endcomment %}
+        <label for="{{ form..date_of_birth.id_for_label }}">Date of Birth</label>
+        {{ profile_form.date_of_birth }}
+        <label for="{{ form.photo.id_for_label }}" class="custom-file-label"> Choose Profile Photo... </label>
+        {{ profile_form.photo }}
+        <p><input type="submit" value="Save changes" class="register-btn"></p>
     </form>
+</div>
+    <style>
+        input[type="file"] {
+            display: none;
+          }
+    .edit-div {
+        position:absolute;
+        top:3%;
+        left: 35%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        max-width: 480px;
+        width: 100%;
+        background-color: #ffffff;
+        text-align: center;
+        align-items: center;
+        max-width: 480px;
+        margin: 55px auto;
+        padding: 0 40px;
+        border-radius: 41px;
+        text-align: center;
+    }
+    #id_first_name,#id_last_name,#id_email,#id_date_of_birth{
+        border:2px solid #fff;
+        background-color: #ffffff;
+        border: 1px solid #ccc;
+        width: 100%;
+        border-radius: 5px;
+        
+    }
+    #id_first_name:hover,#id_last_name:hover,#id_email:hover,#id_date_of_birth:hover{border:2px solid #1883bb;}
+    .edit-form {
+        width:100%%
+    }
+    .custom-file-label{
+        display: inline-block;
+        cursor: pointer;
+        background-color: #fff;
+        color: white;
+        border-radius: 5px;
+        font-size: 16px;
+        text-align: center;
+        color: #000;
+        /* border: 1px solid #ccc;
+        margin: 1.5rem 10rem 0;*/
+        padding: 1rem 2rem;
+    }
+    .custom-file-label:hover {
+        background-color: #1883bb;
+        color:#fff;
+        border:1px solid #ccc
+      }
+#id_photo{
+  width: 100%;
+  height: 36px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background: #fff;
+  color: #b1b1b1;
+
+}
+#id_photo:hover {
+    background: #ccc;
+  }
+
+    </style>
 {% endblock %}

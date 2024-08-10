@@ -1,11 +1,88 @@
-{% extends "base.html" %}
+
+
+{% extends "base.html"%} 
+{% load static %}
 
 {% block title %} Logged Out {% endblock %}
 
 {% block content %}
-    <h1>Logged Out</h1>
-    <p>
-        You have been successfully logged out.
-        You can <a href="{% url 'authh:login' %}">Login again</a>
-    </p>
+    <div clas="cont">
+        <div class="Reset-form">
+            <div>
+                <img src="{% static 'images/logo.png'%}" class="logoImg" alt="Company Logo" />
+            </div>
+            
+            <div>
+                <h2 class="title">Logged Out</h2>
+            </div>
+            
+            <div>
+                <p class="logged-msg"> You have been successfully logged out.</p>
+            </div>
+            
+            <div>
+                <a href="{% url 'home' %}" class="loginBtn">RETURN HOME</a>
+            </div>
+        </div>
+    </div>
+        
+    <style>
+        .Reset-form {
+            border: 1px solid #1883bb;
+            max-width: 480px;
+            width: 100%;
+            padding: 3rem 0rem;
+            margin:10rem auto;
+            border-radius: 41px;
+            background-color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* height: 50%; */
+            gap: 1.5rem;
+        }
+        .logged-msg{
+            margin-bottom:1rem;
+            margin-top:-1rem;
+        }
+        .logoImg {
+            width: 217px;
+            max-width: 100%;
+            aspect-ratio: 3.1;
+            object-fit: contain;
+        }
+    
+        .title {
+            margin-top:1rem;
+            color: #1883bb;
+            font-size: 24px;
+        }
+        
+        .loginBtn {
+            text-decoration: none;
+            font-weight: 500; 
+            color: #ffffff !important;
+            border-radius: 5px;
+            padding: 18px 53px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 1rem; 
+            border: 1px solid #1883bb;
+            background: #1883bb;
+        }
+
+            .loginBtn:hover {
+                background:#177cb2;
+                border: 1px solid #177cb2;
+        }
+            .loginBtn:active {
+                background:#fff;
+                border: 1px solid #1883bb;
+                color: #1883bb
+        }
+    </style>
+        
 {% endblock %}

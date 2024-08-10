@@ -9,30 +9,240 @@
         <title>{% block title %}{% endblock %}</title>
         <script src="https://kit.fontawesome.com/1c0928d3ce.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
-        <link rel="stylesheet" href="{% static 'css/nav.css' %}">
 </head>
 <body>  
-        <nav class="menu-container">
-            <input type="checkbox" aria-label="Toggle menu" />
-            <span></span>
-            <span></span>
-            <span></span>
-          
+    <nav class="menu-container">
+        <div class="logo-container">
             <a href="#" class="menu-logo">
-              <img src="{% static 'images/logo.png'%}" alt="logo"/>
+              <img src="{% static 'images/logo.png'%}"  alt="logo"/>
             </a>
+        </div>
         
-            <div class="menu">
-              <ul>
+        <div class="main-menu-container">
+            <ul class="main-menu">
                 <li> <a href="{% url 'home' %}" {% if section == 'HOME' %} class="selected" {% endif %}> HOME </a> </li>
                 <li> <a href="{% url 'translation:instant' %}" {% if section == 'TRANSLATE' %} class="selected" {% endif %}> TRANSLATE </a> </li>
                 <li> <a href="{% url 'ABOUTUS' %}" {% if section == 'ABOUT US' %} class="selected" {% endif %}> ABOUT US </a> </li>
                 <li> <a href="{% url 'CONTACTUS' %}" {% if section == 'CONTACT' %} class="selected" {% endif %}> CONTACT </a> </li>
-              </ul>
-              
+            </ul>
+        </div>
+        {% if request.user.is_authenticated %}
+        <div class="user-container">
+            <p class="user-profile"> My Profile  <img src="{% static 'images/app.png'%}" alt=""> </p>
+            <ul class="user-menu">
+                <p class="user-name"> <img src= "{% static 'images/account.png'%}"> {{ request.user.first_name|default:request.user.username }}</p>
+                <li {% if section == 'create' %} class="selected" {% endif %}><a href="{% url 'translation:create' %}">Create Project</a></li>
+                <li {% if section == 'project' %} class="selected" {% endif %}><a href="{% url 'translation:grant_permission' %}">Grant Permission</a></li>
+                <li {% if section == 'ChangePassword' %} class="selected" {% endif %}><a href="{% url 'authh:password_change' %}">Change my Password</a></li>
+                <li {% if section == 'EDIT' %} class="selected" {% endif %}><a href="{% url 'authh:edit' %}">Edit</a></li>
+                <li {% if section == 'LOGOUT' %} class="selected" {% endif %}><a href="{% url 'authh:Logout' %}">Logout</a></li>
+            </ul>
+        </div>
+
+            {% else %}
+            <div class="user-container">
+                <p class="user-profile"> JOIN US  <img src="{% static 'images/login.png'%}" alt=""> </p>
+                <ul class="user-menu">
+                    <li {% if section == 'LOGIN' %} class="selected" {% endif %}><a href="{% url 'authh:login' %}">LOGIN</a></li>
+                    <li {% if section == 'SIGN-UP' %} class="selected" {% endif %}><a href="{% url 'authh:register' %}">SIGN-UP</a></li>  
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+
+        <style>
+            
+/* NAVBAR */
+
+a {
+    color: #1883bb
+}
+a:hover {
+    color: #126591
+}
+  .menu-container {
+    position:fixed;
+    width:100%;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .8rem 5rem;
+    color: #1883bb;
+    background-color: #f8f8f8;
+    box-shadow: 0 4px 8px 0 #1882bb86, 0 6px 20px 0 rgba(147, 217, 243, 0.219);
+    margin-top: 8px;
+    box-sizing: border-box;
+    z-index: 1;
+  }
+  
+  
+  .logo-container {
+    flex: 1;
+  }
+  
+  .menu-logo img {
+    height: 40px;
+  }
+  
+  .main-menu-container {
+    flex: 2;
+    text-align: center;
+  }
+  
+  .main-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    /* justify-content: center; */
+  }
+  
+  .main-menu li {
+    margin: 0 15px;
+  }
+  
+  .main-menu li a {
+    text-decoration: none;
+    font-weight: 600; 
+  }
+  
+  .main-menu li a.selected:hover {
+    color: #126591;
+  }
+  
+  .user-container {
+    /* flex: 1; */
+    text-align: right;
+    position: relative;
+  }
+  .user-profile {
+    /* width: max-content; */
+    cursor: pointer;
+    padding: 0 10px;
+    font-weight: 700;
+    justify-content: flex-end;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+  }
+  
+  .user-name {
+    display: inline-block;
+    margin: 0;
+    padding: .5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 6px;
+  }
+  
+  .user-name:hover {
+    color: #126591;
+  }
+  
+  .user-menu {
+      width: 150%;
+      display: none;
+      text-align: left;
+      list-style: none;
+      font-size: 0.9em;
+      padding: .5rem;
+      margin: 0;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      z-index: 1;
+      background-color: #fff;
+      box-shadow: 0 4px 8px 0 #1882bb86, 0 6px 20px 0 rgba(147, 217, 243, 0.219);
+      opacity: 0;
+      transition: all 1s ease-in-out;
+      -webkit-transition: all 1s ease-in-out;
+      -moz-transition: all 1s ease-in-out;
+      -ms-transition: all 1s ease-in-out;
+      -o-transition: all 1s ease-in-out;
+  }
+  
+  
+  .user-menu li {
+    padding: 8px 16px;
+  }
+  
+  .user-menu li a {
+    box-sizing: border-box;
+    text-decoration: none;
+    color: #333;
+  }
+  .user-menu li a:hover {
+    color: #1883bb;
+    font-weight: 500;
+    font-size: 1em;
+  }
+  .user-container:hover .user-menu {
+    display: block;
+    opacity: 1;
+  }
+  
+  .menu-container a {
+    text-decoration: none;
+    transition: color 0.3s ease;
+    -webkit-transition: color 0.3s ease;
+    -moz-transition: color 0.3s ease;
+    -ms-transition: color 0.3s ease;
+    -o-transition: color 0.3s ease;
+  }
+  
+  
+    
+    .menu-container span:first-child {
+      transform-origin: 0% 0%;
+    }
+    
+    .menu-container span:nth-child(3) {
+      transform-origin: 0% 100%;
+    }
+    
+    .menu-container input:checked ~ span {
+      opacity: 1;
+      transform: rotate(45deg) translate(3px, -1px);
+      background: #232323;
+    }
+    
+    .menu-container input:checked ~ span:nth-child(4) {
+      opacity: 0;
+      transform: rotate(0deg) scale(0.2, 0.2);
+    }
+    
+    .menu-container input:checked ~ span:nth-child(3) {
+      transform: rotate(-45deg) translate(-5px, 11px);
+    }
+    
+        </style>
+    </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} 
+
+
+
               <ul>
                 
                   {% if request.user.is_authenticated %}
+
+
+
                        hello{{ request.user.first_name|default:request.user.username }}
                       
                       
@@ -48,7 +258,7 @@
               </ul>
               
             </div>
-        </nav>
+        </nav> {% endcomment %}
 
         
         

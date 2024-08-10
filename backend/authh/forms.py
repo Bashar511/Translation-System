@@ -73,20 +73,56 @@ class UserRegistrationForm(forms.ModelForm):
             raise forms.ValidationError('Email already exists.')
         return data
 # Specify the input fields to Edit Profile
+# class UserEditForm(forms.ModelForm):
+#     class Meta:
+#         model = User
+#         fields = ['first_name', 'last_name', 'email']
+        
+#     # to make sure it is correct email
+#     def clean_email(self):
+#         data = self.cleaned_data['email']
+#         qs = User.objects.exclude(id=self.instance.id).filter(email=data)
+#         if qs.exists():
+#             raise forms.ValidationError('Email already exists.')
+#         return data
+# # Specify the input fields to profile
+# class ProfileEditForm(forms.ModelForm):
+#     class Meta:
+#         model = Profile
+#         fields = ['date_of_birth', 'photo']
+
 class UserEditForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'email']
-        
-    # to make sure it is correct email
+        widgets = {
+            'first_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
+        }
+
     def clean_email(self):
         data = self.cleaned_data['email']
         qs = User.objects.exclude(id=self.instance.id).filter(email=data)
         if qs.exists():
             raise forms.ValidationError('Email already exists.')
         return data
-# Specify the input fields to profile
+
 class ProfileEditForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['date_of_birth', 'photo']
+        widgets = {
+            'date_of_birth': forms.DateInput(attrs={'class': 'form-control'}),
+            'photo': forms.FileInput(attrs={'class': 'form-control-file'}),
+        }
+        labels = {
+            'photo': 'Upload your profile picture',
+        }
+    
+    def __init__(self, *args, **kwargs):
+        super(ProfileEditForm, self).__init__(*args, **kwargs)
+        # Adding custom class to the label of the 'photo' field
+        self.fields['photo'].label = 'Upload your profile picture'
+        self.fields['photo'].widget.attrs.update({'class': 'form-control-file'})
+        self.fields['photo'].widget.attrs.update({'label_class': 'custom-label-class'})
