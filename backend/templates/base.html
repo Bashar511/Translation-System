@@ -221,59 +221,6 @@ a:hover {
     
         </style>
     </nav>
-
-
-
-
-
-
-
-
-
-
-
-
-{% comment %} 
-
-
-
-              <ul>
-                
-                  {% if request.user.is_authenticated %}
-
-
-
-                       hello{{ request.user.first_name|default:request.user.username }}
-                      
-                      
-                      <li {% if section == 'create' %} class="selected" {% endif %}><a href="{% url 'translation:create' %}">create</a></li>
-                      <li {% if section == 'project' %} class="selected" {% endif %}><a href="{% url 'translation:grant_permission' %}">grant_permission</a></li>
-                      <li {% if section == 'ChangePassword' %} class="selected" {% endif %}><a href="{% url 'authh:password_change' %}">password_change</a></li>
-                      <li {% if section == 'EDIT' %} class="selected" {% endif %}><a href="{% url 'authh:edit' %}">edit</a></li>
-                      <li {% if section == 'LOGOUT' %} class="selected" {% endif %}><a href="{% url 'authh:Logout' %}">Logout</a> </li>
-                  {% else %}
-                      <a href="{% url 'authh:login' %}">Login</a>
-                  {% endif %}
-              
-              </ul>
-              
-            </div>
-        </nav> {% endcomment %}
-
-        
-        
-        {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                    <li class="{{message.tags}}">
-                        {{message|safe}}
-                    </li>
-                    <a href="#" class="close">X</a>
-                {% endfor %}
-            </ul>
-        {% endif %}
-
-
         <div id="content">
             {% block content %} {% endblock %}
         </div>
