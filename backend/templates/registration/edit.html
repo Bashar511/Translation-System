@@ -13,9 +13,9 @@
         {% csrf_token %}
         {{ user_form.as_p }}
         {% comment %} {{ profile_form.as_p }} {% endcomment %}
-        <label for="{{ form..date_of_birth.id_for_label }}">Date of Birth</label>
+        <label for="{{ form.date_of_birth.id_for_label }}">Date of Birth</label>
         {{ profile_form.date_of_birth }}
-        <label for="{{ form.photo.id_for_label }}" class="custom-file-label"> Choose Profile Photo... </label>
+        <label for="id_photo" class="custom-file-label"> Choose Profile Photo... </label>
         {{ profile_form.photo }}
         <p><input type="submit" value="Save changes" class="register-btn"></p>
     </form>
