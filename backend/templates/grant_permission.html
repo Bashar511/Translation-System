@@ -8,8 +8,13 @@ Grant Permission
         <div class="col-lg-6 mx-auto">
           <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
             <form method="POST" enctype="multipart/form-data">
+                {% comment %} {% csrf_token %}
+                {{ form.as_p }} {% endcomment %}
                 {% csrf_token %}
-                {{ form.as_p }}
+                <label for="id_project"> project </label>
+                {{ form.project }}
+                <label for="id_granted_to">granted_to</label>
+                {{ form.granted_to }}
                 <input type="submit" value="Grant">
             </form>
           </div>
