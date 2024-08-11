@@ -20,9 +20,10 @@ def instant(request):
     else:
         context = {
             'unprocessed' : '',
-            'processed' : 'Translated Text',
+            'processed' : '',
         }
     return render(request, "instant_translation.html", context)
+
 
 # @login_required
 # def browse(request):

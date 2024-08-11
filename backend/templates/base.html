@@ -31,6 +31,7 @@
             <p class="user-profile"> My Profile  <img src="{% static 'images/app.png'%}" alt=""> </p>
             <ul class="user-menu">
                 <p class="user-name"> <img src= "{% static 'images/account.png'%}"> {{ request.user.first_name|default:request.user.username }}</p>
+                <li {% if section == 'My Projects' %} class="selected" {% endif %}><a href="{% url 'translation:browse' %}">My Projects</a></li>
                 <li {% if section == 'create' %} class="selected" {% endif %}><a href="{% url 'translation:create' %}">Create Project</a></li>
                 <li {% if section == 'project' %} class="selected" {% endif %}><a href="{% url 'translation:grant_permission' %}">Grant Permission</a></li>
                 <li {% if section == 'ChangePassword' %} class="selected" {% endif %}><a href="{% url 'authh:password_change' %}">Change my Password</a></li>
