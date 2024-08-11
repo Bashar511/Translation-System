@@ -9,7 +9,7 @@ class Project(models.Model):
         publish = models.DateTimeField(default=timezone.now)
         deliverytime=models.DateField()
         fileAR=models.FileField(upload_to='input',null=True)
-        fileEN=models.FileField(upload_to='input')
+        fileEN=models.FileField(upload_to='input' )
         updated_dt = models.DateTimeField(null=True)
 
         class Meta:

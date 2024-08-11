@@ -14,7 +14,8 @@
         {{ form.publish }}
         <label for="deliverytime" > Delivery Time </label>
         {{ form.deliverytime }}
-        <label for="fileEN" class="custom-file-label"> File </label>
+        <label for=""> Choose File </label>
+        <label for="fileEN" class="custom-file-label"> Browse... </label>
         {{ form.fileEN }}
         <button type="submit" class="createProject-btn">Create</button>
 
@@ -28,6 +29,7 @@
     input[type="file"] {
         display: none;
       }
+      label {font-weight:500}
     .createProject-form {
         padding: 24px 40px;
         border-radius: 41px;
@@ -147,7 +149,7 @@
       }
 
 
-      .custom-file-label{
+      .custom-file-label{    
         display: inline-block;
         cursor: pointer;
         background-color: #fff;
@@ -156,13 +158,13 @@
         font-size: 16px;
         text-align: center;
         color: #000;
-        /* border: 1px solid #ccc;
-        margin: 1.5rem 10rem 0;*/
-        padding: 1rem 2rem;
+        border: 1px solid #ccc;
+        padding: .5rem 2rem;
+        width: 100%;
     }
     .custom-file-label:hover {
-        background-color: #1883bb;
-        color:#fff;
+        background-color: #ccc;
+        color:#000;
         border:1px solid #ccc
       }
 #fileEN{
