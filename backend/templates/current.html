@@ -24,13 +24,14 @@
 <div class="editProject-form">
     <img src="{% static 'images/logo.png'%}" class="logo" alt="logo"/>
     <h2 class="title">Edit Project</h2>
+
     <form method="post" novalidate class="mb-4" enctype="multipart/form-data">
       {% csrf_token %}
-        <label for="id_title">Project Name</label>
-        <input type="text" name="title" required id="id_title" value="{{ updateform.title }}">
+        <label for="title">Project Name</label>
+        <input type="text" name="title" required id="title" value="{{ updateform.title }}">
 
         <label for="deliverytime">Delivery Time</label>
-        <input type="text" name="title" required id="deliverytime" value="{{ updateform.deliverytime }}">
+        <input type="text" name="deliverytime" required id="deliverytime" value="{{ updateform.deliverytime }}">
 
         <p class="Filename"> Filename: <p id="filename" >{{ updateform.fileEN }}</p></p>
         <label for="id_fileEN" class="custom-file-label">Change...</label>
@@ -201,7 +202,7 @@
     display: none;
 
 }
-#id_title,#deliverytime,.Filename {
+#title,#deliverytime,.Filename {
   width: 100%;
   display:block;
   text-align:left;
