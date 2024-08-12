@@ -35,7 +35,7 @@ def signup(request):
                 login(request, user)
                 
 
-            return redirect('translation:browse')  # Redirect to browse_projects view
+            return redirect('home')  # Redirect to browse_projects view
     else:
         user_form = UserRegistrationForm()
     return render(request, 'registration/register.html', {'user_form': user_form})
