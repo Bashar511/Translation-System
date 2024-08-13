@@ -73,6 +73,7 @@ class PostUpdateView(UpdateView):
 
 def details(request,x):
     project = get_object_or_404(Project,pk=x)
+    title=project.title
     fileEN=project.fileEN
     fileAR=project.fileAR
     processed_fileEN =parse_srt(fileEN.path) 
@@ -104,8 +105,12 @@ def details(request,x):
             text = request.POST['text_field']
         except MultiValueDictKeyError:
             text = ''
+
         processed_text = bart_en2ar(text)
+
+
         context = {
+            'title':title,
             'unprocessed' : text,
             'processed' : processed_text,
             'fileEN' : processed_fileEN,
@@ -117,6 +122,7 @@ def details(request,x):
         create_srt(processed_fileAR_after, fileAR.path)
     else:
         context = {
+            'title':title,
             'unprocessed' : '',
             'processed' : '',
             'fileEN' : processed_fileEN,

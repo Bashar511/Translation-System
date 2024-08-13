@@ -1,60 +1,207 @@
 {% extends "base.html" %}
-{% block title %} test {% endblock %}
+{% block title %} ALT-SHIFT | PROJECT DETAILS {% endblock %}
 {% block content %}
-{% comment %} {{ context }} {% endcomment %}
+<div class="det">
+  <h1>{{ title }}</h1>
 <div class="container">
+
   <div class="wrapper">
-    <h1>Testing Form</h1>
-    <form action="" method="post" class="form">
+    <form action="" method="post" class="form-eng">
       {% csrf_token %}
-      <textarea name="text_field" id="txt-input" class="txt-input" placeholder="Insert text to translate">{{ processed }}</textarea>
-      <button type="submit" id="btn" class="btn">Submit</button>
+      <label for="txt-input" class="form-label"> Original Sentence </label>
+      <textarea name="text_field" id="txt-input" class="txt-input" placeholder="Insert text to translate">{{ unprocessed }}</textarea>
+      <button type="submit" class="btn-form" id="btn-form">Translate</button>
     </form> 
+    {% comment %} <p></p> {% endcomment %}
   </div>
+    
   <div class="wrapper">
-    <h1>Reply</h1>
-    <div class="replyy" id="replyy">
-      <p>{{ processed }}</p>
-    </div>
-  </div>
-  <div class="wrapper">
-    <h1>Final Decision</h1>
     <form action="" method="post" class="form">
       {% csrf_token %}
-      <textarea name="final_decision" id="txt-input" class="txt-input" placeholder="Insert translate"></textarea>
-      <label for="number">ID</label>
-      <input type="number" id="number" name="number" step="1" min="1" placeholder="Enter the sentence number" required>
-      <button type="submit" id="btn" class="btn">SAVE</button>
+      <label for="txt-input" class="form-label"> Translated Sentence </label>
+      <textarea name="final_decision" id="txt-output" class="txt-input" placeholder="Insert translate">{{ processed }}</textarea>
+      <div id="idDiv">
+        <label for="number" class="form-label">ID</label>
+        <input type="number" id="number" name="number" step="1" min="1" placeholder="Enter the sentence number" required>
+      </div>
+      <button type="submit" id="saveBtn" class="btn-form" >SAVE</button>
     </form>
   </div>
 </div>
-<table border="1" cellpadding="20" style="height: 200px;">
-  <caption>srs</caption>
-  <tr>
+<table border="1" cellpadding="20" >
+  <caption>
+    <div class="table-caption">
+      <p class="instructions">
+        Click on a row to translate the sentence. A "Generate" button will
+        appear next to the row. Click "Generate" to get the translation.
+        Once done, click "Save" to save all translations.
+      </p>
+    </div>
+  </caption>
+  <thead>
+    <tr>
     <th>ID</th>
     <th>start time</th>
     <th>end time</th>
     <th>sentence</th>
     <th>translate</th>
   </tr>
+</thead>
+<tbody>
+
   {% for key, value in fileEN.items %}
   <tr>
     <td>{{ value.ID }}</td>
     <td>{{ value.start_time }}</td>
     <td>{{ value.end_time }}</td>
-    <td onclick="copyToTextarea('{{ value.sentence }}')">{{ value.sentence }}</td>
-    <td id="i">
+    <td onclick="copyToTextarea('{{ value.sentence }}')" id="tra">{{ value.sentence }}</td>
+    <td id="i" style="width:42%">
       {% for key1, value1 in fileAR.items %}
           {% if key == key1 %}
-          <textarea name="t" id="t">{{ value1.sentence }}</textarea>
+          <textarea name="t" class="translated-input" id="t">{{ value1.sentence }}</textarea>
           {% endif %}
         {% endfor %}
      
     </td>
   </tr>
-  {% endfor %}
-</table>
 
+  {% endfor %}
+</tbody>
+
+</table>
+</div>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+  .container {
+    background:#fff;
+display:flex;
+justify-content:space-between;
+flex 1;
+position:fixed;
+bottom:0;
+left:0;
+right:0;
+box-shadow: 0 -4px 8px 0 #1882bb86, 0 -6px 20px 0 rgba(147, 217, 243, 0.219);
+padding:2rem 8rem;
+
+  }
+  .wrapper {
+    width:50%;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: flex-start;
+    position:relative;
+  }
+  form{
+    width: 80%;
+
+  }
+
+  #txt-input ,#txt-output{
+      width: 80%;
+      height: 130px;
+      resize: none;
+      font-size:1.2em;
+      background: inherit;
+      border-radius:5px;
+      background:#f5f5f5
+    
+  }
+  #txt-output, #tra,#t{
+    direction:rtl ;
+    font-family: "Cairo", sans-serif
+  }
+  #tra{
+    font-size: 1.3em;
+    font-family:Poppins, sans-serif;
+
+  }
+  #t{ font-size: 1.3em;}
+  .btn-form{
+    width: 30%;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    background-color: #1883bb;
+    border: 1px solid #1883bb;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1.8em;
+    text-align: center;
+    
+  }
+  #number {
+    background:#f5f5f5;
+  }
+  #btn-form{
+    position:absolute;
+    right: 3rem;
+    bottom: 0.4em;
+  }
+  #saveBtn{
+    position:absolute;
+    right: 2.7rem;
+    bottom: .7rem;
+  }
+  #idDiv{
+    position: absolute;
+    right: 6rem;
+    top: 0;
+  }
+  
+  label {
+    font-weight:bold;
+    font-size:1.1rem;
+    margin-bottom:10px
+    
+  }
+
+  
+
+
+  .det{
+    margin: 7rem auto;
+
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+  }
+
+  th,
+  td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+
+
+  }
+  tbody tr:nth-child(even) {
+    background-color: #f5f5f5;
+  }
+  .translated-input:focus {border:none; outline: none;}
+  .translated-input {
+    width: 100%;
+    height: 50px;
+    resize: none;
+    border: none;
+    background: inherit;
+  }
+  
+  .table-caption {
+    text-align: center;
+  }
+  .instructions {
+    font-size: 0.8em;
+    color: #555;
+    margin-top: 5px;
+    margin-bottom: 1rem;
+  }
+
+</style>
 <script>
   function copyToTextarea(text) {
     var textarea1 = document.getElementById('txt-input');
