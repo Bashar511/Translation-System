@@ -17,7 +17,7 @@ def parse_srt(filename):
     current_id = None
     current_text = []
 
-    with open(filename, 'r', encoding='utf-8-sig') as file:
+    with open(filename, 'r', encoding='utf-8') as file:
         for line in file:
             line = line.strip()
             if line.isdigit():
@@ -62,7 +62,7 @@ def create_srt(subtitle_dict, filename):
         filename: The path to the output .srt file.
     """
 
-    with open(filename, 'w', encoding='utf-8-sig') as file:
+    with open(filename, 'w', encoding='utf-8') as file:
         for subtitle_id, subtitle in subtitle_dict.items():
             file.write(f"{subtitle_id}\n")
             file.write(f"{subtitle['start_time']} --> {subtitle['end_time']}\n")
