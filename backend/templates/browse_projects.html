@@ -28,10 +28,10 @@
           </div>
 
         </div>
-        {% comment %} <div class="file-projct">
-          <a href="/media/{{ out.fileEN }}">{{ out.fileEN }}</a><br>
-          <a href="/media/{{ out.fileAR }}">{{ out.fileAR }}</a>
-        </div> {% endcomment %}
+        <div class="file-projct">
+          <a href="/media/{{ out.fileEN }}">Download Original File</a><br>
+          <a href="/media/{{ out.fileAR }}">Download Translated File</a>
+        </div> 
         <div class="btn-project">
           <button onclick="window.location.href='{% url 'translation:current' out.pk %}'">Edit</button>
           {% comment %} <button onclick="window.location.href='{% url 'translation:delet' out.pk %}'">delete</button> {% endcomment %}

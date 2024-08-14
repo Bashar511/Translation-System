@@ -1,9 +1,159 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %} ALT-SHIFT | HOME {% endblock %}
 {% block content %}
-<h1>welcome</h1>
-<p><a href="{% url 'translation:instant' %}">instance</a></p>
-<p><a href="{% url 'authh:register' %}">register</a></p>
-<p><a href="{% url 'authh:login' %}">log in</a></p>
+<section class="hero-section">
+    <div class="hero-content">
+      <div class="hero-text-column">
+        
+        <div>
+            <div class="hero-welcome-text">WELCOME TO</div>
+            <h1 class="hero-title">ALT-SHIFT</h1>
+            <div class="hero-subtitle">Your AI-Powered Translator</div>
+        </div>
+        
+        <div>
+            <a href="#" class="hero-cta-button">Learn more</a>
+        </div>
+        
+        <div>
+            <div class="hero-join-text">First time here? Join us as a translator</div>
+            <a href="{% url 'authh:register' %}" class="hero-join-button">Register</a>
+        </div>
+      </div>
+      <div class="hero-image-column">
+        <img src="{% static 'images//welcome.jpg'%}" alt="Welcome to ALT-SHIFT" class="hero-image" />
+      </div>
+    </div>
+  </section>
+  
+  <section class="about-section">
+    <div class="about-content">
+      <h2 class="about-title">About Us</h2>
+      <p class="about-text">ALT-SHIFT is an AI-powered translation platform that allows users to translate sentences and work collaboratively on SRT files. Our mission is to make translation seamless and accessible for everyone.</p>
+      <a href="#" class="about-cta-button">Learn more</a>
+    </div>
+  </section>
+
+
+
+
+<style>
+.hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 100vh
+}
+
+.hero-content {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+  min-height: 100vh; /* Ensure it takes up full screen height */
+}
+
+.hero-text-column {
+  flex: 1;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  text-align: center;
+}
+
+.hero-image-column {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.hero-welcome-text .hero-subtitle {
+    color: #333;
+    font-size: 2.2em;
+    font-weight: 200;
+  }
+.hero-title {
+  font-size: 6em;
+  color: #1883bb;
+  font-weight: 600;
+  text-align: center;
+}
+  
+
+
+.hero-cta-button, .hero-join-button, .about-cta-button {
+  display: inline-block;
+  margin-top: 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  width: 344px;
+  max-width: 100%;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  padding: 35px 40px;
+  font-size: 1.2em;
+}
+.hero-cta-button:hover {
+    cursor: pointer;
+    background: var(--primaryHover);
+}
+.hero-cta-button, .about-cta-button {
+    background: #1883bb;
+    color: #fff !important;
+    border: 1px solid #1883bb;
+}
+.hero-join-button {
+    border: 1px solid #1883bb;
+    margin-top: 18px;
+    width: 344px;
+    max-width: 100%;
+    align-items: center;
+    color: #1883bb ;
+    background: #fff;
+    text-align: center;
+    justify-content: center;
+  }
+  .hero-join-button:hover {
+    cursor: pointer;
+    border: 1px solid var(--secondaryColor);
+    background: var(--secondaryColor);
+    border: var(--secondaryColor);
+
+  } 
+.hero-join-text {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #333;
+  text-align: center;
+  margin-top: 4rem;
+}
+.about-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-title {
+  font-size: 36px;
+  color: #1883bb;
+}
+
+.about-text {
+  font-size: 18px;
+  color: #666;
+  margin-top: 20px;
+}
+
+
+
+</style>
 
 {% endblock %}
