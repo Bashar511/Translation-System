@@ -4,7 +4,7 @@
 <div class="det">
   <h1>{{ title }}</h1>
 <div class="container">
-
+{% comment %} 
   <div class="wrapper">
     <form action="" method="post" class="form-eng">
       {% csrf_token %}
@@ -12,14 +12,13 @@
       <textarea name="text_field" id="txt-input" class="txt-input" placeholder="Insert text to translate">{{ unprocessed }}</textarea>
       <button type="submit" class="btn-form" id="btn-form">Translate</button>
     </form> 
-    {% comment %} <p></p> {% endcomment %}
-  </div>
+  </div> {% endcomment %}
     
   <div class="wrapper">
     <form action="" method="post" class="form">
       {% csrf_token %}
       <label for="txt-input" class="form-label"> Translated Sentence </label>
-      <textarea name="final_decision" id="txt-output" class="txt-input" placeholder="Insert translate">{{ processed }}</textarea>
+      <textarea name="final_decision" id="txt-output" class="txt-input" placeholder="Insert translate"></textarea>
       <div id="idDiv">
         <label for="number" class="form-label">ID</label>
         <input type="number" id="number" name="number" step="1" min="1" required >
@@ -141,14 +140,15 @@ padding:2rem 8rem;
     bottom: 0.4em;
   }
   #saveBtn{
-    position:absolute;
+    /*position:absolute;
     right: 2.7rem;
-    bottom: .7rem;
+    bottom: .7rem;*/
   }
-  #idDiv{
+  #idDiv{/*
     position: absolute;
     right: 6rem;
-    top: 0;
+    top: 0;*/
+    display: none;
   }
   
   label {
@@ -209,7 +209,7 @@ padding:2rem 8rem;
     var output = document.getElementById('txt-output');
     var sentence = text.replace(/\n/g, ' ');
     query(sentence).then((response) => {
-      output.value  = JSON.stringify(response);
+      output.value  = JSON.stringify(response).slice(1,-1);
     });
     //textarea1.value = JSON.stringify(sentence) + '\n';
     number.value=ID;
@@ -220,6 +220,7 @@ padding:2rem 8rem;
     const data = {
       inputs: inputString
     };
+    console.log(data)
   
     // Perform the API request
     const response = await fetch(
