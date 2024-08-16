@@ -3,39 +3,125 @@
 
 {% block title %} ALT-SHIFT | Create Project {% endblock %}
 {% block content %}
-<div class="createProject-form">
-    <img src="{% static 'images/logo.png'%}" class="logo" alt="logo"/>
+<div class="editProject-form">
+    <img src="{% static 'images/logo.png'%}" class="logo" alt="logo" />
     <h2 class="title">Start New Project</h2>
-    <form action="{% url 'translation:create' %}" method="POST" enctype="multipart/form-data">
+
+    <form action="{% url 'translation:create' %}" novalidate method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <label for="title"> Title </label>
+        <label for="title">Title</label>
         {{ form.title }}
+        <p id="titleError" class="error-message">Title cannot be empty.</p>
+
         <label for="publish"></label>
         {{ form.publish }}
-        <label for="deliverytime" > Delivery Time </label>
+
+        <label for="deliverytime">Delivery Time</label>
         {{ form.deliverytime }}
-        <label for=""> Choose File </label>
+        <p id="deliveryTimeError" class="error-message">Please enter a valid date in YYYY-MM-DD format or like "Dec 12, 2024"..</p>
+
+        <label for=""> Choose SRT File </label>
         <label for="fileEN" class="custom-file-label"> Browse... </label>
         {{ form.fileEN }}
-        <button type="submit" class="createProject-btn">Create</button>
+        <p id="fileError" class="error-message">Please choose an SRT file.</p>
 
+        <button type="submit" class="createProject-btn">Create</button>
     </form>
 
     <footer class="footer">
         <a href="#">Privacy</a> | <a href="#">Policy</a> | <a href="#">Contact us</a>
-      </footer>
-    </div>
+    </footer>
+</div>
+
+<script>
+    document.querySelector('.editProject-form').addEventListener('submit', function (event) {
+        const titleInput = document.querySelector('[name="title"]');
+        const titleError = document.getElementById('titleError');
+
+        const fileInput = document.querySelector('[name="fileEN"]');
+        const fileError = document.getElementById('fileError');
+        const fileValue = fileInput.value;
+        const fileExtension = fileValue.split('.').pop().toLowerCase();
+
+        const deliveryTimeInput = document.querySelector('[name="deliverytime"]');
+        const deliveryTimeError = document.getElementById('deliveryTimeError');
+        const deliveryTimeValue = deliveryTimeInput.value;
+        const datePattern = /^\d{4}-\d{2}-\d{2}$/;
+        const datePatternAlternative = /^(January|February|March|April|May|June|July|August|September|October|November|December) \d{1,2}, \d{4}$/;
+        const datePatternShortMonth = /^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{1,2}, \d{4}$/;
+
+        let valid = true;
+
+        if (!titleInput.value.trim()) {
+            valid = false;
+            titleError.style.display = 'block';
+            titleInput.classList.add('error');
+        } else {
+            titleError.style.display = 'none';
+            titleInput.classList.remove('error');
+        }
+
+        if (!fileValue || fileExtension !== 'srt') {
+            valid = false;
+            fileError.style.display = 'block';
+            fileInput.classList.add('error');
+        } else {
+            fileError.style.display = 'none';
+            fileInput.classList.remove('error');
+        }
+
+        if (!datePattern.test(deliveryTimeValue) && !datePatternAlternative.test(deliveryTimeValue) && !datePatternShortMonth.test(deliveryTimeValue)) {
+            valid = false;
+            deliveryTimeError.style.display = 'block';
+            deliveryTimeInput.classList.add('error');
+        } else {
+            deliveryTimeError.style.display = 'none';
+            deliveryTimeInput.classList.remove('error');
+        }
+
+        if (!valid) {
+            event.preventDefault();
+        }
+    });
+
+</script>
+
+
 <style>
+    p,
+    label {
+        margin: 0;
+        text-align: left;
+    }
+
     input[type="file"] {
         display: none;
-      }
-      label {font-weight:500}
-    .createProject-form {
+    }
+
+    input {
+        border: 1px solid #ccc;
+        outline: none;
+        margin-bottom: 10px;
+    }
+
+    input:hover {
+        outline: none;
+        border: 1px solid transparent;
+        box-shadow: 0 4px 8px 0 #1882bb86, 0 6px 20px 0 rgba(147, 217, 243, 0.219);
+
+    }
+
+    input:focus {
+        outline: none;
+        box-shadow: 0 4px 8px 0 #1882bb86, 0 6px 20px 0 rgba(147, 217, 243, 0.219);
+
+        border: 1px solid transparent;
+    }
+
+    .editProject-form {
         padding: 24px 40px;
         border-radius: 41px;
-        position: absolute;
-        top: 3%;
-        left: 35%;
+        position: relative;
         display: flex;
         justify-content: center;
         flex-direction: column;
@@ -44,112 +130,122 @@
         text-align: center;
         align-items: center;
         margin: 55px auto;
-      }
-      
-      .title {
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .title {
         color: #1883bb;
         font-size: 24px;
         margin-top: 39px;
         margin-bottom: 40px;
-      }
-      
-      .form-group {
+    }
+
+    .form-group {
         text-align: left;
         margin-bottom: 10px;
-      }
-      
-      .form-row {
+    }
+
+    .form-row {
         display: flex;
         gap: 16px;
-      }
-      
-      .form-row .form-group {
+    }
+
+    .form-row .form-group {
         flex: 1;
-      }
-      
-      label {
+    }
+
+    label {
         text-align: left;
         display: block;
         margin-bottom: 5px;
         font-size: 16px;
-        
-      }
-      
-      .form-create, .browse-button {
+    }
+
+    .form-create,
+    .browse-button {
         width: 100%;
         height: 36px;
         border-radius: 5px;
         border: 1px solid #ccc;
         padding: 0 10px;
-      }
-      .browse-button {
+    }
+
+    .browse-button {
         background: #fff;
         color: #b1b1b1;
-      }
-      .browse-button:hover {
+    }
+
+    .browse-button:hover {
         cursor: pointer;
         background: #efeeee;
-      }
-      .form-create:focus {
+    }
+
+    .form-create:focus {
         border: 2px solid #1883bb !important;
         outline: none !important;
-      }
-      
-      .createProject-btn {
-          background-color: #1883bb;
-          color: #ffffff;
-          border: none;
-          border-radius: 5px;
-          padding: 15px 53px;
-          font-size: 18px;
-          cursor: pointer;
-          margin-top: 25px;
-          border: 1px solid #1883bb
-        }
-        .createProject-btn:hover {
-            background: #126591;
-            border: 1px solid #126591   
-        }
-        .createProject-btn:active {
-            background: #fff;
-            border:1px solid #1883bb;
-            color: #1883bb
-        }
-      .forgotDiv{
-          width: 100%;
-          text-align: right;
-          font-size: 16px;
-          margin: 1.2rem 0;
-      }
-      .forgot-password {
+    }
+
+    .createProject-btn {
+        background-color: #1883bb;
+        color: #ffffff;
+        border: none;
+        border-radius: 5px;
+        padding: 15px 53px;
+        font-size: 18px;
+        cursor: pointer;
+        margin-top: 25px;
+        border: 1px solid #1883bb;
+        width: 100%;
+    }
+
+    .createProject-btn:hover {
+        background: #126591;
+        border: 1px solid #126591;
+    }
+
+    .createProject-btn:active {
+        background: #fff;
+        border: 1px solid #1883bb;
+        color: #1883bb;
+    }
+
+    .forgotDiv {
+        width: 100%;
+        text-align: right;
+        font-size: 16px;
+        margin: 1.2rem 0;
+    }
+
+    .forgot-password {
         color: #a8a7a7;
-        text-align: right; 
+        text-align: right;
         text-decoration: none;
     }
-      
-      .login-link {
+
+    .login-link {
         color: #1883bb;
         text-decoration: none;
         font-weight: bold;
-      }
-      .link {
+    }
+
+    .link {
         color: #1883bb;
         text-decoration: none;
         font-weight: bold;
-      }
-      
-      .footer {
+    }
+
+    .footer {
         font-size: 16px;
         margin-top: 45px;
-      }
-      
-      .footer a {
+    }
+
+    .footer a {
         color: #000000;
         text-decoration: none;
-      }
+    }
 
-
-      .custom-file-label{    
+    .custom-file-label {
         display: inline-block;
         cursor: pointer;
         background-color: #fff;
@@ -162,29 +258,119 @@
         padding: .5rem 2rem;
         width: 100%;
     }
+
     .custom-file-label:hover {
         background-color: #ccc;
-        color:#000;
-        border:1px solid #ccc
-      }
-#fileEN{
-  width: 100%;
-  height: 36px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  background: #fff;
-  color: #b1b1b1;
+        color: #000;
+        border: 1px solid #ccc;
+    }
 
-}
-#fileEN:hover {
-    background: #ccc;
-  }
-#publish{
-    display: none;
+    #fileEN {
+        width: 100%;
+        height: 36px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        background: #fff;
+        color: #b1b1b1;
+    }
 
-}
+    #fileEN:hover {
+        background: #ccc;
+    }
 
+    #publish {
+        display: none;
+    }
+
+    #title,
+    #deliverytime,
+    .Filename {
+        width: 100%;
+        display: block;
+        text-align: left;
+    }
+
+    .Filename {
+        margin-top: 0;
+        font-weight: 500;
+    }
+
+    #filename {
+        font-weight: 200;
+        text-align: left;
+    }
+
+    .error-message {
+        color: red;
+        font-size: 14px;
+        margin-top: 5px;
+        display: none;
+        margin-bottom: 1rem;
+    }
+
+    input.error {
+        border: 1px solid red;
+    }
+
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+    }
+
+    @media (max-width: 768px) {
+        .editProject-form {
+            padding: 20px;
+            width: 90%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .title {
+            font-size: 20px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .createProject-btn {
+            padding: 10px 30px;
+            font-size: 16px;
+        }
+
+        .footer {
+            font-size: 14px;
+            margin-top: 20px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .editProject-form {
+            padding: 15px;
+            width: 95%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .title {
+            font-size: 18px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        .createProject-btn {
+            padding: 8px 20px;
+            font-size: 14px;
+        }
+
+        .footer {
+            font-size: 12px;
+            margin-top: 15px;
+        }
+    }
 </style>
-
 
 {% endblock %}
