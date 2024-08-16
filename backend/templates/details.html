@@ -54,7 +54,7 @@
     <td>{{ value.ID }}</td>
     <td>{{ value.start_time }}</td>
     <td>{{ value.end_time }}</td>
-    <td onclick="copyToTextarea('{{ value.sentence }}','{{ value.ID }}')" id="tra">{{ value.sentence }}</td>
+    <td onclick=" copyToTextarea('{{ value.sentence |escapejs }}','{{ value.ID }}') " id="tra">{{ value.sentence }}</td>
     <td id="i" style="width:42%">
       {% for key1, value1 in fileAR.items %}
           {% if key == key1 %}
@@ -205,12 +205,35 @@ padding:2rem 8rem;
 <script>
   function copyToTextarea(text,ID) {
     var number=document.getElementById('number');
-    var textarea1 = document.getElementById('txt-input');
-
+    var input = document.getElementById('txt-input');
+    var output = document.getElementById('txt-output');
     var sentence = text.replace(/\n/g, ' ');
-    textarea1.value = JSON.stringify(sentence) + '\n';
-   // number.value=ID;
+    query(sentence).then((response) => {
+      output.value  = JSON.stringify(response);
+    });
+    //textarea1.value = JSON.stringify(sentence) + '\n';
+    number.value=ID;
 
+  }
+  async function query(inputString) {
+    // Create the data object with the input string
+    const data = {
+      inputs: inputString
+    };
+  
+    // Perform the API request
+    const response = await fetch(
+      "https://api-inference.huggingface.co/models/Helsinki-NLP/opus-mt-en-ar",
+      {
+        headers: { Authorization: "Bearer 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" },
+        method: "POST",
+        body: JSON.stringify(data),
+      }
+    );
+  
+    // Parse the JSON response
+    const result = await response.json();
+    return result[0]?.translation_text;
   }
 </script>
 

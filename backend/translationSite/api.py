@@ -4,15 +4,15 @@ import time
 
 def hel_en2ar(payload):
     headers = {"Authorization": "Bearer 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"}
-    API_URL = "https://api-inference.huggingface.co/models/Helsinki-NLP/opus-mt-tc-big-en-ar"
+    API_URL = "https://api-inference.huggingface.co/models/Helsinki-NLP/opus-mt-en-ar"
     data = json.dumps(payload)
     for attempt in range(3):
         try:
-            response = requests.request("POST", API_URL, data=data)
+            response = requests.request("POST", API_URL, data=data, headers=headers)
         except requests.exceptions.RequestException:
             return "No internet connection"
         if response.status_code == 503:
-            time.sleep(5)
+            time.sleep(10)
             pass
         if response.ok:
             text = json.loads(response.content.decode("utf-8"))

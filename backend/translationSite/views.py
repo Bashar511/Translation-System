@@ -1,5 +1,5 @@
 from django.shortcuts import render ,get_object_or_404,redirect
-from .api import hel_en2ar, bart_en2ar
+from .api import hel_en2ar
 from .forms import *
 from .subtitle_parser import *
 from .models import *
@@ -12,7 +12,7 @@ from django.urls import reverse
 def instant(request):
     if request.method == 'POST':
         text = request.POST['text_field']
-        processed_text = bart_en2ar(text)
+        processed_text = hel_en2ar(text)
         context = {
         'unprocessed' : text,
         'processed' : processed_text,
@@ -106,7 +106,7 @@ def details(request,x):
         except MultiValueDictKeyError:
             text = ''
 
-        processed_text = bart_en2ar(text)
+        processed_text = hel_en2ar(text)
 
 
         context = {
