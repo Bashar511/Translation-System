@@ -2,36 +2,33 @@
 {% block title %} ALT-SHIFT | PROJECT DETAILS {% endblock %}
 {% block content %}
 <div class="det">
-  <h1>{{ title }}</h1>
-<div class="container">
-    <form action="" method="post" class="form">
+  <h2 class="projectTitle">{{ title }}</h2>
+<div class="mycontainer">
+  <p class="instructions">Click on a sentence to generate translation for it, edit it as you want and hit the SAVE button to save the translated sentence in its place.</p>
+  <div class="form">
+
+    <form action="" method="post">
       {% csrf_token %}
-      <label for="txt-input" class="form-label"> Translated Sentence </label>
-      <textarea name="final_decision" id="txt-output" class="txt-input" placeholder="Insert translate"></textarea>
+      <label for="txt-input" class="form-label"> </label>
+      <textarea name="final_decision" id="txt-output" class="txt-input" placeholder="Translated sentence will appear here."></textarea>
       <div id="idDiv">
         <label for="number" class="form-label">ID</label>
         <input type="number" id="number" name="number" step="1" min="1" required >
       </div>
-      <button type="submit" id="saveBtn" class="btn-form" >SAVE</button>
+      <button type="submit" id="saveBtn" class="btn-form" > SAVE </button>
     </form>
+  </div>  
 </div>
 <table border="1" cellpadding="20" >
   <caption>
-    <div class="table-caption">
-      <p class="instructions">
-        Click on a row to translate the sentence. A "Generate" button will
-        appear next to the row. Click "Generate" to get the translation.
-        Once done, click "Save" to save all translations.
-      </p>
-    </div>
   </caption>
   <thead>
     <tr>
     <th>ID</th>
-    <th>start time</th>
-    <th>end time</th>
-    <th>sentence</th>
-    <th>translate</th>
+    <th>Start Time</th>
+    <th>End Time</th>
+    <th>Original Sentence</th>
+    <th>Translated Sentence</th>
   </tr>
 </thead>
 <tbody>
@@ -59,19 +56,32 @@
 </div>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
-
-  .container {
+.projectTitle {
+  color:#1883bb;
+  text-align: center;
+  margin: 2rem auto;
+  letter-spacing: 1px;
+}
+  .form {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .form-label {
+    color:#ccc;
+    flex:30%
+  }
+  .mycontainer {
     background:#fff;
-display:flex;
-justify-content:space-between;
-flex 1;
 position:fixed;
 bottom:0;
 left:0;
 right:0;
 box-shadow: 0 -4px 8px 0 #1882bb86, 0 -6px 20px 0 rgba(147, 217, 243, 0.219);
-padding:2rem 8rem;
-
+padding:1rem;
+width:80%;
+margin:0 auto;
   }
   .wrapper {
     width:50%;
@@ -83,7 +93,11 @@ padding:2rem 8rem;
   }
   form{
     width: 80%;
-
+    gap: 2rem;
+    width: 80%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
   }
 
   #txt-input ,#txt-output{
@@ -157,6 +171,7 @@ padding:2rem 8rem;
     width: 100%;
     border-collapse: collapse;
     border: 1px solid #ccc;
+    margin-bottom: 30rem;
   }
 
   th,
@@ -169,6 +184,9 @@ padding:2rem 8rem;
   }
   tbody tr:nth-child(even) {
     background-color: #f5f5f5;
+  }
+  tbody tr:nth-child(even):hover {
+    background-color: #d3e0ea;
   }
   .translated-input:focus {border:none; outline: none;}
   .translated-input {
@@ -183,15 +201,28 @@ padding:2rem 8rem;
     text-align: center;
   }
   .instructions {
+    text-align: center;
     font-size: 0.8em;
     color: #555;
     margin-top: 5px;
     margin-bottom: 1rem;
   }
 
+tr:hover {
+  background-color: #d3e0ea; 
+  cursor: pointer; 
+}
+
+
+tr:focus-within {
+  background-color: #d3e0ea; 
+  border: 2px solid #1883bb; 
+}
+
 </style>
 <script>
   function copyToTextarea(text,ID) {
+  
     var number=document.getElementById('number');
     var input = document.getElementById('txt-input');
     var output = document.getElementById('txt-output');
