@@ -4,17 +4,6 @@
 <div class="det">
   <h1>{{ title }}</h1>
 <div class="container">
-{% comment %} 
-  <div class="wrapper">
-    <form action="" method="post" class="form-eng">
-      {% csrf_token %}
-      <label for="txt-input" class="form-label"> Original Sentence </label>
-      <textarea name="text_field" id="txt-input" class="txt-input" placeholder="Insert text to translate">{{ unprocessed }}</textarea>
-      <button type="submit" class="btn-form" id="btn-form">Translate</button>
-    </form> 
-  </div> {% endcomment %}
-    
-  <div class="wrapper">
     <form action="" method="post" class="form">
       {% csrf_token %}
       <label for="txt-input" class="form-label"> Translated Sentence </label>
@@ -25,7 +14,6 @@
       </div>
       <button type="submit" id="saveBtn" class="btn-form" >SAVE</button>
     </form>
-  </div>
 </div>
 <table border="1" cellpadding="20" >
   <caption>
