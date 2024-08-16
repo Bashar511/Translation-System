@@ -22,7 +22,7 @@
       <textarea name="final_decision" id="txt-output" class="txt-input" placeholder="Insert translate">{{ processed }}</textarea>
       <div id="idDiv">
         <label for="number" class="form-label">ID</label>
-        <input type="number" id="number" name="number" step="1" min="1" placeholder="Enter the sentence number" required>
+        <input type="number" id="number" name="number" step="1" min="1" required >
       </div>
       <button type="submit" id="saveBtn" class="btn-form" >SAVE</button>
     </form>
@@ -54,7 +54,7 @@
     <td>{{ value.ID }}</td>
     <td>{{ value.start_time }}</td>
     <td>{{ value.end_time }}</td>
-    <td onclick="copyToTextarea('{{ value.sentence }}')" id="tra">{{ value.sentence }}</td>
+    <td onclick="copyToTextarea('{{ value.sentence }}','{{ value.ID }}')" id="tra">{{ value.sentence }}</td>
     <td id="i" style="width:42%">
       {% for key1, value1 in fileAR.items %}
           {% if key == key1 %}
@@ -203,17 +203,14 @@ padding:2rem 8rem;
 
 </style>
 <script>
-  function copyToTextarea(text) {
+  function copyToTextarea(text,ID) {
+    var number=document.getElementById('number');
     var textarea1 = document.getElementById('txt-input');
+
     var sentence = text.replace(/\n/g, ' ');
     textarea1.value = JSON.stringify(sentence) + '\n';
-    const textarea = document.getElementById('replyy');
-    const button = document.getElementById('myButton');
-    const input = document.getElementById('i');
-    button.addEventListener('click', () => {
-      const text1 = "tttttttttt";
-      input.value = text1;
-    });
+   // number.value=ID;
+
   }
 </script>
 

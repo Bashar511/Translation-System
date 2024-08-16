@@ -13,7 +13,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* font-family:Poppins, sans-serif; */
+    font-family:Poppins, sans-serif;
     font-family: "Cairo", sans-serif;
     -webkit-transition: all .3s ease-in-out;
     -ms-transition: all .3s ease-in-out;
@@ -88,9 +88,9 @@ h2 {
     padding-top:4px;
 }
 
-#content {
+/* #content {
     padding:30px 100px;
-}
+} */
 
 form p {
     width:100%;

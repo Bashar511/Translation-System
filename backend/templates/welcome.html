@@ -3,29 +3,33 @@
 {% block title %} ALT-SHIFT | HOME {% endblock %}
 {% block content %}
 <section class="hero-section">
-    <div class="hero-content">
-      <div class="hero-text-column">
-        
-        <div>
-            <div class="hero-welcome-text">WELCOME TO</div>
-            <h1 class="hero-title">ALT-SHIFT</h1>
-            <div class="hero-subtitle">Your AI-Powered Translator</div>
-        </div>
-        
-        <div>
-            <a href="#" class="hero-cta-button">Learn more</a>
-        </div>
-        
-        <div>
-            <div class="hero-join-text">First time here? Join us as a translator</div>
-            <a href="{% url 'authh:register' %}" class="hero-join-button">Register</a>
-        </div>
+  <div class="container-fluid hero-content">
+      <div class="row w-100">
+          <div class="col-lg-6 d-flex flex-column justify-content-center align-items-center hero-text-column" style="padding: 0; margin:0">
+              <div>
+                  <div class="hero-welcome-text">WELCOME TO</div>
+                  <h1 class="hero-title">ALT-SHIFT</h1>
+                  <div class="hero-subtitle">Your AI-Powered Translator</div>
+              </div>
+              <div>
+                  <a href="{% url 'ABOUTUS' %}" class="btn hero-cta-button">Learn more</a>
+              </div>
+              <div>
+                {% if request.user.is_authenticated %}
+                <input type="hidden" >
+                {% else %}
+                <div class="hero-join-text">First time here? Join us as a translator</div>
+                <a href="{% url 'authh:register' %}" class="btn hero-join-button">Register</a>
+            {% endif %}
+
+              </div>
+          </div>
+          <div class="col-lg-6 d-none d-lg-flex  d-flex justify-content-center align-items-center hero-image-column">
+              <img src="{% static 'images/welcome.jpg' %}" alt="Welcome to ALT-SHIFT" class="hero-image" />
+          </div>
       </div>
-      <div class="hero-image-column">
-        <img src="{% static 'images//welcome.jpg'%}" alt="Welcome to ALT-SHIFT" class="hero-image" />
-      </div>
-    </div>
-  </section>
+  </div>
+</section>
   
   <section class="about-section">
     <div class="about-content">
@@ -36,105 +40,128 @@
   </section>
 
 
+  <div class="container mt-5">
+    <h2>Frequently Asked Questions</h2>
+    <div class="accordion" id="faqAccordion">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    How to work with ALT-SHIFT as a translator?
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    By creating an account via sign-up button in the navbar.
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Question 2
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Answer to question 2.
+                </div>
+            </div>
+        </div>
+        
+
+    </div>
+</div>
+
 
 
 <style>
-.hero-section {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 100vh
-}
-
-.hero-content {
-    display: flex;
-    width: 100%;
-    justify-content: space-evenly;
-  min-height: 100vh; /* Ensure it takes up full screen height */
-}
-
-.hero-text-column {
-  flex: 1;
-  min-height: 80vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  text-align: center;
-}
-
-.hero-image-column {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.hero-image {
-  max-width: 100%;
-  height: auto;
-}
-
-.hero-welcome-text .hero-subtitle {
-    color: #333;
-    font-size: 2.2em;
-    font-weight: 200;
-  }
-.hero-title {
-  font-size: 6em;
-  color: #1883bb;
-  font-weight: 600;
-  text-align: center;
-}
-  
-
-
-.hero-cta-button, .hero-join-button, .about-cta-button {
-  display: inline-block;
-  margin-top: 20px;
-  text-decoration: none;
-  border-radius: 5px;
-  width: 344px;
-  max-width: 100%;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-  padding: 35px 40px;
-  font-size: 1.2em;
-}
-.hero-cta-button:hover {
-    cursor: pointer;
-    background: var(--primaryHover);
-}
-.hero-cta-button, .about-cta-button {
-    background: #1883bb;
-    color: #fff !important;
-    border: 1px solid #1883bb;
-}
-.hero-join-button {
-    border: 1px solid #1883bb;
-    margin-top: 18px;
-    width: 344px;
-    max-width: 100%;
-    align-items: center;
-    color: #1883bb ;
-    background: #fff;
-    text-align: center;
-    justify-content: center;
-  }
-  .hero-join-button:hover {
-    cursor: pointer;
-    border: 1px solid var(--secondaryColor);
-    background: var(--secondaryColor);
-    border: var(--secondaryColor);
-
-  } 
-.hero-join-text {
-  margin-top: 20px;
-  font-size: 16px;
-  color: #333;
-  text-align: center;
-  margin-top: 4rem;
-}
+  .hero-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 100vh;
+        }
+        .hero-content {
+            display: flex;
+            width: 100%;
+            justify-content: space-evenly;
+            min-height: 100vh;
+        }
+        .hero-text-column {
+            flex: 1;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            text-align: center;
+        }
+        .hero-image-column {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .hero-image {
+            max-width: 100%;
+            height: auto;
+        }
+        .hero-welcome-text, .hero-subtitle {
+            color: #333;
+            font-size: 2.2em;
+            font-weight: 200;
+        }
+        .hero-title {
+            font-size: 6em;
+            color: #1883bb;
+            font-weight: 600;
+            text-align: center;
+        }
+        .hero-cta-button, .hero-join-button, .about-cta-button {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            width: 344px;
+            max-width: 100%;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            padding: 35px 40px;
+            font-size: 1.2em;
+        }
+        .hero-cta-button:hover {
+            cursor: pointer;
+            background: var(--primaryHover);
+        }
+        .hero-cta-button, .about-cta-button {
+            background: #1883bb;
+            color: #fff !important;
+            border: 1px solid #1883bb;
+        }
+        .hero-join-button {
+            border: 1px solid #1883bb;
+            margin-top: 18px;
+            width: 344px;
+            max-width: 100%;
+            align-items: center;
+            color: #1883bb;
+            background: #fff;
+            text-align: center;
+            justify-content: center;
+        }
+        .hero-join-button:hover {
+            cursor: pointer;
+            border: 1px solid var(--secondaryColor);
+            background: var(--secondaryColor);
+            border: var(--secondaryColor);
+        }
+        .hero-join-text {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #333;
+            text-align: center;
+            margin-top: 4rem;
+        }
 .about-content {
   max-width: 800px;
   margin: 0 auto;
@@ -152,7 +179,42 @@
   margin-top: 20px;
 }
 
-
+@media (max-width: 992px) {
+            .hero-title {
+                font-size: 4em;
+            }
+            .hero-welcome-text, .hero-subtitle {
+                font-size: 1.5em;
+            }
+            .hero-cta-button, .hero-join-button {
+                padding: 20px 30px;
+                font-size: 1em;
+            }
+        }
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3em;
+            }
+            .hero-welcome-text, .hero-subtitle {
+                font-size: 1.2em;
+            }
+            .hero-cta-button, .hero-join-button {
+                padding: 15px 20px;
+                font-size: 0.9em;
+            }
+        }
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 2.5em;
+            }
+            .hero-welcome-text, .hero-subtitle {
+                font-size: 1em;
+            }
+            .hero-cta-button, .hero-join-button {
+                padding: 10px 15px;
+                font-size: 0.8em;
+            }
+        }
 
 </style>
 

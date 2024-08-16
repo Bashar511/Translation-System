@@ -1,0 +1,212 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} ALT-SHIFT | ABOUT US {% endblock %}
+{% block content %}
+
+<!-- Contact Us -->
+<div class="contact">
+    <img src="{% static 'images/logo.png'%}" class="Sitelogo"/>
+    <h2>ABOUT US</h2>
+</div>
+
+
+<section class="contact-us">
+    <div class="myrow">
+        <div class="contact-col">
+            <div>
+                    <p>We are the Advanced Language Company specialized in providing translation and proofreading services. We combine artificial intelligence techniques and human competencies to offer you a full range of reliable and professional human translation services provided with the highest quality and lowest cost for various disciplines and fields. We have solid experience in providing distinguished translation services, which gives us confidence that we are able to meet the needs of our clients, work with them to achieve their goals and produce results that provide them with complete satisfaction with our services, as we always strive to establish unique standards in this The field is based on a high commitment to the level of quality, speed in completing tasks, and high-level linguistic value.</p>
+            </div>
+        </div>
+        <div class="contact-col aboutImg">
+        </div>
+    </div>
+</section>
+
+<section class="values">
+    <h2> Our Values </h2>
+    <div class="myrow">
+        <div class="contact-col double">
+            <img src="{% static 'images/checked.png'%}" class="Sitelogo"/>
+            PRIVACY
+        </div>
+        <div class="contact-col double">
+            <img src="{% static 'images/checked.png'%}" class="Sitelogo"/>
+            QUALITY
+        </div>
+        <div class="contact-col double">
+            <img src="{% static 'images/checked.png'%}" class="Sitelogo"/>
+            CREDIBILITY
+        </div>
+        <div class="contact-col double">
+            <img src="{% static 'images/checked.png'%}" class="Sitelogo"/>
+            RELIABLITY
+        </div>
+    </div>
+</section>
+
+ 
+<section class="contact-us vision">
+    <div class="myrow">
+
+        <div class="contact-col">
+            <h2> Our Vision </h2>
+            <p> Providing certified proficient translation services.</p>
+        </div>
+        <div class="contact-col">
+            <h2> Our Mission </h2>
+            <p> Excellency in supplying translation services using current technology. </p>
+        </div>
+    </div>
+</section>
+
+<style>
+    .vision {
+        height: 9rem !important;
+    }
+    .contact-col h2 {
+        color: #1883bb;
+     font-weight:600;
+     font-size:1.2em
+    }
+.values {
+     padding: 3rem 10rem; 
+
+    height:18rem;
+    width: 80%;
+    margin: auto;
+    margin-top:3rem;
+    background:#1883bb;
+    color:#fff;
+    border-radius:5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.values .myrow {
+    
+    text-align: center;
+}
+.double{ 
+    font-size:2em;
+    display: flex;
+    flex-direction: row;
+}
+.double img {
+    width: 24px;
+    height: 24px;
+    margin-right: 0;
+}
+
+.values h2 {
+    text-align:center;
+    font-size: 2em;
+    color: #fff;
+    font-weight: 500;
+}
+.aboutImg {
+        background:url('{% static 'images/about.jpg'%}') top center / cover;
+}
+.contact {
+    margin-top: 5rem;
+    text-align: center;
+    
+}
+.contact h2{ 
+    font-size: 4em;
+    color: #1883bb;
+    font-weight: 500;
+}
+.Sitelogo {
+    max-width: 310px;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+input, textarea {
+    border: none;
+    box-shadow: 0 4px 8px 0 #1882bb86, 0 6px 20px 0 rgba(147, 217, 243, 0.219);
+
+}
+
+.hero-btn{
+    display: inline-block;
+    color: #fff;
+    border: 1px solid #1883bb;
+    font-size: 1.2em;
+    position: relative;
+    transition: 0.4s;
+    cursor: pointer;
+    background-color: #1883bb;
+    border-radius: 5px;
+    padding: 18px 53px;
+}
+.hero-btn:hover{
+    background: #126591;
+    border: 1px solid #126591  
+}
+
+
+
+.myrow {
+    margin-top: 5%;
+    display:flex;
+    justify-content: space-between;
+    gap: 5rem;
+}
+@media (max-width:500px) {
+    .myrow{
+        flex-direction: column
+    }
+}
+
+.location {
+    width: 80%;
+    margin: auto;
+    padding: 80px 0;
+}
+.location iframe{
+    width: 100%;
+    box-shadow: 0 4px 8px 0 #1882bb86, 0 6px 20px 0 rgba(147, 217, 243, 0.219);
+}
+.contact-us {
+    height:30rem;
+    width: 80%;
+    margin: auto;
+}
+.contact-col {
+    flex-basis: 48%;
+    /* margin-bottom: 30px; */
+}
+.contact-col div{
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+}
+.contact-col img{
+    font-size: 28px;
+    margin:10px;
+    margin-right: 30px;
+}
+.contact-col div p{
+    padding: 3rem 0;
+}
+.contact-col div h5{
+    font-size:20px;
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: 400;
+}
+
+.contact-col input, .contact-col textarea {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 17px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+</style>
+
+
+{% endblock %}

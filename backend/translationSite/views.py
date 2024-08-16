@@ -117,6 +117,7 @@ def details(request,x):
             'fileAR' : processed_fileAR_after,
             'decision':decision,
             'ID':number,
+            
         }
         processed_fileAR_after[int(number)]["sentence"]=decision
         create_srt(processed_fileAR_after, fileAR.path)

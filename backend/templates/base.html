@@ -9,221 +9,161 @@
         <title>{% block title %}{% endblock %}</title>
         <script src="https://kit.fontawesome.com/1c0928d3ce.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
 <body>  
-    <nav class="menu-container">
-        <div class="logo-container">
-            <a href="#" class="menu-logo">
-              <img src="{% static 'images/logo.png'%}"  alt="logo"/>
-            </a>
-        </div>
-        
-        <div class="main-menu-container">
-            <ul class="main-menu">
-                <li> <a href="{% url 'home' %}" {% if section == 'HOME' %} class="selected" {% endif %}> HOME </a> </li>
-                <li> <a href="{% url 'translation:instant' %}" {% if section == 'TRANSLATE' %} class="selected" {% endif %}> TRANSLATE </a> </li>
-                <li> <a href="{% url 'ABOUTUS' %}" {% if section == 'ABOUT US' %} class="selected" {% endif %}> ABOUT US </a> </li>
-                <li> <a href="{% url 'CONTACTUS' %}" {% if section == 'CONTACT' %} class="selected" {% endif %}> CONTACT </a> </li>
-            </ul>
-        </div>
-        {% if request.user.is_authenticated %}
-        <div class="user-container">
-            <p class="user-profile"> My Profile  <img src="{% static 'images/app.png'%}" alt=""> </p>
-            <ul class="user-menu">
-                <p class="user-name"> <img src= "{% static 'images/account.png'%}"> {{ request.user.first_name|default:request.user.username }}</p>
-                <li {% if section == 'My Projects' %} class="selected" {% endif %}><a href="{% url 'translation:browse' %}">My Projects</a></li>
-                <li {% if section == 'create' %} class="selected" {% endif %}><a href="{% url 'translation:create' %}">Create Project</a></li>
-                <li {% if section == 'project' %} class="selected" {% endif %}><a href="{% url 'translation:grant_permission' %}">Grant Permission</a></li>
-                <li {% if section == 'ChangePassword' %} class="selected" {% endif %}><a href="{% url 'authh:password_change' %}">Change my Password</a></li>
-                <li {% if section == 'EDIT' %} class="selected" {% endif %}><a href="{% url 'authh:edit' %}">Edit</a></li>
-                <li {% if section == 'LOGOUT' %} class="selected" {% endif %}><a href="{% url 'authh:Logout' %}">Logout</a></li>
-            </ul>
-        </div>
 
+  <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="{% static 'images/logo.png' %}" alt="logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link {% if section == 'HOME' %}selected{% endif %}" href="{% url 'home' %}">HOME</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if section == 'TRANSLATE' %}selected{% endif %}" href="{% url 'translation:instant' %}">TRANSLATE</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if section == 'ABOUT US' %}selected{% endif %}" href="{% url 'ABOUTUS' %}">ABOUT US</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if section == 'CONTACT' %}selected{% endif %}" href="{% url 'CONTACTUS' %}">CONTACT</a>
+                </li>
+            </ul>
+            {% if request.user.is_authenticated %}
+            <div class="dropdown d-lg-none">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    My Profile <img src="{% static 'images/app.png' %}" alt="">
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><p class="dropdown-item"><img src="{% static 'images/account.png' %}"> {{ request.user.first_name|default:request.user.username }}</p></li>
+                    <li><a class="dropdown-item {% if section == 'My Projects' %}selected{% endif %}" href="{% url 'translation:browse' %}">My Projects</a></li>
+                    <li><a class="dropdown-item {% if section == 'create' %}selected{% endif %}" href="{% url 'translation:create' %}">Create Project</a></li>
+                    <li><a class="dropdown-item {% if section == 'project' %}selected{% endif %}" href="{% url 'translation:grant_permission' %}">Grant Permission</a></li>
+                    <li><a class="dropdown-item {% if section == 'ChangePassword' %}selected{% endif %}" href="{% url 'authh:password_change' %}">Change my Password</a></li>
+                    <li><a class="dropdown-item {% if section == 'EDIT' %}selected{% endif %}" href="{% url 'authh:edit' %}">Edit</a></li>
+                    <li><a class="dropdown-item {% if section == 'LOGOUT' %}selected{% endif %}" href="{% url 'authh:Logout' %}">Logout</a></li>
+                </ul>
+            </div>
+            <div class="dropdown d-none d-lg-block">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    My Profile <img src="{% static 'images/app.png' %}" alt="">
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><p class="dropdown-item username"><img src="{% static 'images/account.png' %}"> {{ request.user.first_name|default:request.user.username }}</p></li>
+                    <li><a class="dropdown-item {% if section == 'My Projects' %}selected{% endif %}" href="{% url 'translation:browse' %}">My Projects</a></li>
+                    <li><a class="dropdown-item {% if section == 'create' %}selected{% endif %}" href="{% url 'translation:create' %}">Create Project</a></li>
+                    <li><a class="dropdown-item {% if section == 'project' %}selected{% endif %}" href="{% url 'translation:grant_permission' %}">Grant Permission</a></li>
+                    <li><a class="dropdown-item {% if section == 'ChangePassword' %}selected{% endif %}" href="{% url 'authh:password_change' %}">Change my Password</a></li>
+                    <li><a class="dropdown-item {% if section == 'EDIT' %}selected{% endif %}" href="{% url 'authh:edit' %}">Edit</a></li>
+                    <li><a class="dropdown-item {% if section == 'LOGOUT' %}selected{% endif %}" href="{% url 'authh:Logout' %}">Logout</a></li>
+                </ul>
+            </div>
             {% else %}
-            <div class="user-container">
-                <p class="user-profile"> JOIN US  <img src="{% static 'images/login.png'%}" alt=""> </p>
-                <ul class="user-menu">
-                    <li {% if section == 'LOGIN' %} class="selected" {% endif %}><a href="{% url 'authh:login' %}">LOGIN</a></li>
-                    <li {% if section == 'SIGN-UP' %} class="selected" {% endif %}><a href="{% url 'authh:register' %}">SIGN-UP</a></li>  
+            <div class="dropdown d-lg-none">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    JOIN US <img src="{% static 'images/login.png' %}" alt="">
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item {% if section == 'LOGIN' %}selected{% endif %}" href="{% url 'authh:login' %}">LOGIN</a></li>
+                    <li><a class="dropdown-item {% if section == 'SIGN-UP' %}selected{% endif %}" href="{% url 'authh:register' %}">SIGN-UP</a></li>
+                </ul>
+            </div>
+            <div class="dropdown d-none d-lg-block">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    JOIN US <img src="{% static 'images/login.png' %}" alt="">
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item {% if section == 'LOGIN' %}selected{% endif %}" href="{% url 'authh:login' %}">LOGIN</a></li>
+                    <li><a class="dropdown-item {% if section == 'SIGN-UP' %}selected{% endif %}" href="{% url 'authh:register' %}">SIGN-UP</a></li>
                 </ul>
             </div>
             {% endif %}
         </div>
+    </div>
+</nav>
 
-        <style>
+
+
+<style>
             
 /* NAVBAR */
-
+* {
+  font-family: Poppins;
+}
 a {
-    color: #1883bb
-}
-a:hover {
-    color: #126591
-}
-  .menu-container {
-    position:fixed;
-    width:100%;
-    
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: .8rem 5rem;
-    color: #1883bb;
-    background-color: #f8f8f8;
-    box-shadow: 0 4px 8px 0 #1882bb86, 0 6px 20px 0 rgba(147, 217, 243, 0.219);
-    margin-top: 8px;
-    box-sizing: border-box;
-    z-index: 1;
-  }
-  
-  
-  .logo-container {
-    flex: 1;
-  }
-  
-  .menu-logo img {
-    height: 40px;
-  }
-  
-  .main-menu-container {
-    flex: 2;
-    text-align: center;
-  }
-  
-  .main-menu {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    /* justify-content: center; */
-  }
-  
-  .main-menu li {
-    margin: 0 15px;
-  }
-  
-  .main-menu li a {
-    text-decoration: none;
-    font-weight: 600; 
-  }
-  
-  .main-menu li a.selected:hover {
-    color: #126591;
-  }
-  
-  .user-container {
-    /* flex: 1; */
-    text-align: right;
-    position: relative;
-  }
-  .user-profile {
-    /* width: max-content; */
-    cursor: pointer;
-    padding: 0 10px;
-    font-weight: 700;
-    justify-content: flex-end;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 6px;
-  }
-  
-  .user-name {
-    display: inline-block;
-    margin: 0;
-    padding: .5rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 6px;
-    font-weight:800;
-    letter-spacing: 1px;
-  }
-  
-  .user-name:hover {
-    color: #126591;
-  }
-  
-  .user-menu {
-      width: 150%;
-      display: none;
-      text-align: left;
-      list-style: none;
-      font-size: 0.9em;
-      padding: .5rem;
-      margin: 0;
-      position: absolute;
-      top: 100%;
-      right: 0;
-      z-index: 1;
-      background-color: #fff;
-      box-shadow: 0 4px 8px 0 #1882bb86, 0 6px 20px 0 rgba(147, 217, 243, 0.219);
-      opacity: 0;
-      transition: all 1s ease-in-out;
-      -webkit-transition: all 1s ease-in-out;
-      -moz-transition: all 1s ease-in-out;
-      -ms-transition: all 1s ease-in-out;
-      -o-transition: all 1s ease-in-out;
-  }
-  
-  
-  .user-menu li {
-    padding: 8px 16px;
-  }
-  
-  .user-menu li a {
-    box-sizing: border-box;
-    text-decoration: none;
-    color: #333;
-  }
-  .user-menu li a:hover {
-    color: #1883bb;
-    font-weight: 500;
-    font-size: 1em;
-  }
-  .user-container:hover .user-menu {
+            color: #1883bb;
+        }
+        a:hover {
+            color: #126591;
+        }
+        .username {
+          color: #1883bb;
+          font-weight: 600;
+        }
+        .username:hover {
+          color: #1883bb;
+          font-weight: 600;
+        }
+        .navbar-custom {
+            background-color: #f8f8f8;
+            box-shadow: 0 4px 8px 0 #1882bb86, 0 6px 20px 0 rgba(147, 217, 243, 0.219);
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+        .navbar-brand img {
+            height: 40px;
+        }
+        .nav-link {
+            font-weight: 600;
+        }
+        .nav-link.selected:hover {
+            color: #126591;
+        }
+        .dropdown-menu {
+            width: 150%;
+            box-shadow: 0 4px 8px 0 #1882bb86, 0 6px 20px 0 rgba(147, 217, 243, 0.219);
+        }
+        .dropdown-item:hover {
+            color: #1883bb;
+            font-weight: 500;
+        }
+        .dropdown-toggle::after {
+        display: none;
+        }
+        .dropdown-menu.show {
     display: block;
-    opacity: 1;
-  }
-  
-  .menu-container a {
-    text-decoration: none;
-    transition: color 0.3s ease;
-    -webkit-transition: color 0.3s ease;
-    -moz-transition: color 0.3s ease;
-    -ms-transition: color 0.3s ease;
-    -o-transition: color 0.3s ease;
-  }
-  
-  
-    
-    .menu-container span:first-child {
-      transform-origin: 0% 0%;
-    }
-    
-    .menu-container span:nth-child(3) {
-      transform-origin: 0% 100%;
-    }
-    
-    .menu-container input:checked ~ span {
-      opacity: 1;
-      transform: rotate(45deg) translate(3px, -1px);
-      background: #232323;
-    }
-    
-    .menu-container input:checked ~ span:nth-child(4) {
-      opacity: 0;
-      transform: rotate(0deg) scale(0.2, 0.2);
-    }
-    
-    .menu-container input:checked ~ span:nth-child(3) {
-      transform: rotate(-45deg) translate(-5px, 11px);
-    }
-    
+    width: fit-content;}
+        ul {
+          width: fit-content;
+        }
+        #navbarDropdown {
+          /* margin: 2rem 7rem; */
+        }
+          @media (max-width: 992px) {
+            .dropdown-menu {
+                display: block;
+                position: static;
+                float: none;
+                width: auto;
+                margin-top: 0;
+                background-color: transparent;
+                box-shadow: none;
+            }
+            .dropdown-menu .dropdown-item {
+                padding: 0.5rem 1rem;
+            }
+          }
+
         </style>
-    </nav>
+    
         <div id="content">
             {% block content %} {% endblock %}
         </div>
