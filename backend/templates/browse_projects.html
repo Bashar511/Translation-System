@@ -10,16 +10,17 @@
   <h2 class="title">My Projects</h2>
 
   {% csrf_token %}
-  <div class=all-project>
+  <div class="all-project">
       {% for out in form_out %}
 
       <div class="project-card">
         <div class="title-project">
-          <h2><a href="{% url 'translation:details' out.pk %}">{{ out.title }}</a></h2>
+          <h2 ><a class="card-title" href="{% url 'translation:details' out.pk %}">{{ out.title }} <img src="{% static 'images/external.png' %}" alt=""> </a></h2>
+          
         </div>
         <div class="time-project">
           <div>
-            <h4>Pulished on</h4>
+            <h4>Published on</h4>
             <p>{{ out.publish }}</p>
           </div>
           <div>
@@ -53,7 +54,12 @@
         </div>
 
   <style>
-
+.all-project {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
   .course {
     padding: 24px 40px;
     border-radius: 41px;
@@ -67,12 +73,42 @@
     margin: 55px auto;
     flex-wrap: wrap;
   }
-  
+  a {
+    text-decoration: none;
+  }
+  .card-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #fff;
+  border-radius: 50%;
+  width: 100%;
+  max-width: 300px; 
+  height: 10vh;
+  margin-top: -4rem;
+  box-shadow: 0 0 15px 0 rgba(0,0,0,0.3);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; 
+}
+.card-title a {
+  overflow: hidden;
+  text-overflow: ellipsis; 
+  white-space: nowrap;
+  display: block;
+  max-width: 100%;
+}
+  .card-title:hover { 
+    box-shadow: 0 4px 8px 0 #1882bb86, 0 6px 20px 0 rgba(147, 217, 243, 0.219);
+    background:#f5f5f5
+  }
   .title {
     font-weight:600;
     color: #1883bb;
     font-size: 2em;
-    margin: 4rem 0;
+    margin-bottom: 7rem;
+    margin-top: 4rem;
   }
 
   .title-project {
@@ -88,16 +124,15 @@
   }
   
   .project-card {
-    background-color: #f5f5f5;
-    
-    border-radius: 5px;
-    
-    background: #fff;
-    box-shadow: 0 0 15px 0 rgba(0,0,0,0.3);
-    
-    padding: 1rem 2rem;
-    transition:.5s;
-  }
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 0 0 15px 0 rgba(0,0,0,0.3);
+  padding: 2rem;
+  transition: .5s;
+  flex: 1 1 300px;
+  max-width: 300px;
+}
   .project-card:hover {
     box-shadow: 0 4px 8px 0 #1882bb86, 0 6px 20px 0 rgba(147, 217, 243, 0.219);
     background:#f5f5f5
@@ -119,7 +154,10 @@
     margin: 1rem 0;
 
   }
-  
+  .btn-project {
+    display: flex;
+    justify-content: space-between;
+  } 
   .btn-project button {
     margin-right: 10px;
     padding: 10px 15px;
@@ -142,7 +180,7 @@
   }
 
     .modal {
-      display: none; /* Hidden by default */
+      display: none;
       position: fixed;
       z-index: 1;
       left: 0;
@@ -188,18 +226,37 @@
     color: white;
   }
 
-  /* Responsive layout adjustments */
-  @media (max-width: 768px) {
+  
+  @media (max-width: 1330px) {
     .all-project {
-      grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 900px) {
     .all-project {
-      grid-template-columns: 1fr; /* 1 column on small screens */
+      grid-template-columns: 1fr;
     }
   }
+  .file-projct {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* gap: 0.5rem; */
+    margin: 1rem 0;
+}
+
+.file-projct a {
+  color: #1883bb; 
+  font-weight: 600;
+  transition: color 0.3s; 
+}
+
+.file-projct a:hover {
+  color: #126591; 
+  text-decoration: underline; 
+}
+
   </style>
 
   <script>
@@ -211,12 +268,12 @@
         
           function showConfirmModal(projectId) {
             projectToDelete = projectId;
-            document.getElementById('confirmModal').style.display = 'flex'; // Show the modal
+            document.getElementById('confirmModal').style.display = 'flex'; 
           }
         
           document.getElementById('confirmBtn').addEventListener('click', function() {
             if (projectToDelete) {
-              document.getElementById('confirmModal').style.display = 'none'; // Hide the modal
+              document.getElementById('confirmModal').style.display = 'none';
               window.location.href = "{% url 'translation:delet' 0 %}".replace('0', projectToDelete);
             }
           });
@@ -225,7 +282,6 @@
             document.getElementById('confirmModal').style.display = 'none';
           });
         
-          // Close the modal when clicking outside the modal content
           window.onclick = function(event) {
             const modal = document.getElementById('confirmModal');
             if (event.target == modal) {
@@ -233,7 +289,6 @@
             }
           }
         
-          // Prevent modal from showing automatically on page load
           window.onload = function() {
             document.getElementById('confirmModal').style.display = 'none';
           };
