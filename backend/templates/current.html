@@ -21,7 +21,10 @@ input:hover {
   box-shadow: 0 4px 8px 0 #1882bb86, 0 6px 20px 0 rgba(147, 217, 243, 0.219);
   
 }
-input:focus { outline: none;  border: 1px solid transparent;}
+input:focus { outline: none;
+  box-shadow: 0 4px 8px 0 #1882bb86, 0 6px 20px 0 rgba(147, 217, 243, 0.219);
+  
+  border: 1px solid transparent;}
 
 .editProject-form {
     padding: 24px 40px;
@@ -295,7 +298,7 @@ body {
     </footer>
 </div>
 
-<script>
+{% comment %} <script>
 document.querySelector('.editProject-form').addEventListener('submit', function(event) {
     const fileInput = document.getElementById('id_fileEN');
     // const fileError = document.getElementById('fileError');
@@ -328,6 +331,40 @@ document.querySelector('.editProject-form').addEventListener('submit', function(
   if (!valid) {
       event.preventDefault();
   }
+}); {% endcomment %}
+<script>
+  document.querySelector('.editProject-form').addEventListener('submit', function(event) {
+    const fileInput = document.getElementById('id_fileEN');
+    // const fileError = document.getElementById('fileError');
+    const fileValue = fileInput.value;
+
+    const deliveryTimeInput = document.getElementById('deliverytime');
+    const deliveryTimeError = document.getElementById('deliveryTimeError');
+    const deliveryTimeValue = deliveryTimeInput.value;
+    const datePattern = /^\d{4}-\d{2}-\d{2}$/; 
+    const datePatternAlternative = /^(January|February|March|April|May|June|July|August|September|October|November|December) \d{1,2}, \d{4}$/;
+    const datePatternShortMonth = /^(Jan\.|Feb\.|Mar\.|Apr\.|May\.|Jun\.|Jul\.|Aug\.|Sep\.|Oct\.|Nov\.|Dec\.) \d{1,2}, \d{4}$/;
+
+    let valid = true;
+
+    // if (!fileValue) {
+    //     valid = false;
+    //     fileError.style.display = 'block'; // Show error message
+    // } else {
+    //     fileError.style.display = 'none'; // Hide error message
+    // }
+
+    if (!datePattern.test(deliveryTimeValue) && !datePatternAlternative.test(deliveryTimeValue) && !datePatternShortMonth.test(deliveryTimeValue)) {
+        valid = false;
+        deliveryTimeError.style.display = 'block'; 
+    } else {
+        deliveryTimeError.style.display = 'none'; 
+    }
+
+    if (!valid) {
+        event.preventDefault();
+    }
 });
+
 </script>
 {% endblock %}
