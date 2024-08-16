@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% block cssfiles %} <link rel="stylesheet" href="{% static 'css/register.css' %}">{% endblock %}
 
 {% block title %} ALT-SHIFT | Edit Profile {% endblock %}
 
@@ -7,87 +8,278 @@
 <div class="edit-div">
     <img src="{% static 'images/logo.png'%}" class="logo"/>
     <h2 class="title">Edit Your Profile</h2>
-    <form class="edit-form" method="post", enctype="multipart/form-data">
+    <form class="edit-form" method="post" enctype="multipart/form-data">
         
         {% csrf_token %}
         {{ user_form.as_p }}
         {% comment %} {{ profile_form.as_p }} {% endcomment %}
         <label for="{{ form.date_of_birth.id_for_label }}">Date of Birth</label>
         {{ profile_form.date_of_birth }}
+        <p id="dobError" class="error-message" style="display:none; color:red;">Please enter a valid date.</p>
+
         <label for="id_photo" class="custom-file-label" style="margin-top: 25px;"> Choose Profile Photo... </label>
         {{ profile_form.photo }}
-        <p><input type="submit" value="Save changes" class="register-btn"></p>
+        <button type="submit" class="createProject-btn"> Save Changes </button>
     </form>
+    <!-- <footer class="footer">
+        <a href="#">Privacy</a> | <a href="#">Policy</a> | <a href="#">Contact us</a>
+    </footer> -->
 </div>
 
+<div id="successModal" class="modal">
+    <div class="modal-content">
+        <p>Changes saved successfully!</p>
+        <button id="closeSuccessBtn">Close</button>
+    </div>
+</div>
 
+<style>
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
 
+input[type="file"] {
+    display: none;
+}
+.edit-div {
+    padding: 24px 40px;
+    border-radius: 41px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    margin: 55px auto;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-    <style>
-        input[type="file"] {
-            display: none;
-          }
-    .edit-div {
-        position:absolute;
-        top:3%;
-        left: 35%;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        max-width: 480px;
-        width: 100%;
-        background-color: #ffffff;
-        text-align: center;
-        align-items: center;
-        max-width: 480px;
-        margin: 55px auto;
-        padding: 0 40px;
-        border-radius: 41px;
-        text-align: center;
-    }
-    #id_first_name,#id_last_name,#id_email,#id_date_of_birth{
-        border:2px solid #fff;
-        background-color: #ffffff;
-        border: 1px solid #ccc;
-        width: 100%;
-        border-radius: 5px;
-        
-    }
-    #id_first_name:hover,#id_last_name:hover,#id_email:hover,#id_date_of_birth:hover{border:2px solid #1883bb;}
-    .edit-form {
-        width:100%%
-    }
-
-    .custom-file-label{    
-      display: inline-block;
-      cursor: pointer;
-      background-color: #fff;
-      color: white;
-      border-radius: 5px;
-      font-size: 16px;
-      text-align: center;
-      color: #000;
-      border: 1px solid #ccc;
-      padding: .5rem 2rem;
-      width: 100%;
-  }
-  .custom-file-label:hover {
-      background-color: #ccc;
-      color:#000;
-      border:1px solid #ccc
-    }
-#id_photo{
-  width: 100%;
-  height: 36px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  background: #fff;
-  color: #b1b1b1;
-
+/* #id_first_name, #id_last_name, #id_email, #id_date_of_birth {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    width: 100%;
+    border-radius: 5px;
+}
+#id_first_name:hover, #id_last_name:hover, #id_email:hover, #id_date_of_birth:hover {
+    border: 2px solid #1883bb;
+} */
+.edit-form {
+    width: 100%;
+}
+.custom-file-label {    
+    display: inline-block;
+    cursor: pointer;
+    background-color: #fff;
+    color: #000;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    border: 1px solid #ccc;
+    padding: .5rem 2rem;
+    width: 100%;
+}
+.custom-file-label:hover {
+    background-color: #ccc;
+    color: #000;
+    border: 1px solid #ccc;
+}
+#id_photo {
+    width: 100%;
+    height: 36px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #b1b1b1;
 }
 #id_photo:hover {
     background: #ccc;
-  }
+}
+    .error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
 
-    </style>
+input {
+  border: 1px solid #ccc;
+  outline: none;
+  margin-bottom: 1rem;
+}
+input:hover {
+  outline: none; border: 1px solid transparent;
+  box-shadow: 0 4px 8px 0 #1882bb86, 0 6px 20px 0 rgba(147, 217, 243, 0.219);
+  
+}
+input:focus { 
+    outline: none;
+  box-shadow: 0 4px 8px 0 #1882bb86, 0 6px 20px 0 rgba(147, 217, 243, 0.219);
+    border: 1px solid transparent;}
+
+
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+
+.modal-content {
+    background-color: #ccc;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content p {
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.modal-content button {
+    margin: 5px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.createProject-btn {
+    background-color: #1883bb;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 15px 53px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 25px;
+    border: 1px solid #1883bb;
+    width: 100%;
+}
+
+.createProject-btn:hover {
+    background: #126591;
+    border: 1px solid #126591;
+}
+.modal-content #closeSuccessBtn {
+    background-color: #6c757d;
+    color: white;
+}
+@media (max-width: 768px) {
+    .edit-div {
+        margin-top:9rem;
+        padding: 20px;
+        width: 90%;
+    }
+
+    .title {
+        font-size: 20px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .register-btn {
+        font-size: 16px;
+    }
+
+    .footer {
+        font-size: 14px;
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .edit-div {
+        padding: 15px;
+        width: 95%;
+    }
+
+    .title {
+        font-size: 18px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    .register-btn {
+        font-size: 14px;
+    }
+
+    .footer {
+        font-size: 12px;
+        margin-top: 15px;
+    }
+}
+
+</style>
+
+
+<script>
+    document.querySelector('.edit-form').addEventListener('submit', function(event) {
+        event.preventDefault(); 
+    
+        const dobField = document.getElementById('{{ profile_form.date_of_birth.id_for_label }}');
+        const dobError = document.getElementById('dobError');
+        const dobValue = dobField.value;
+        const datePattern = /^\d{4}-\d{2}-\d{2}$/; // YYYY-MM-DD format
+    
+        if (!datePattern.test(dobValue)) {
+            dobError.style.display = 'block';
+        } else {
+            dobError.style.display = 'none'; 
+    
+            
+            const formData = new FormData(this);
+            fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                }
+            }).then(response => {
+                if (response.ok) {
+                    
+                    document.getElementById('successModal').style.display = 'flex';
+                } else {
+                    
+                    console.error('Form submission failed');
+                }
+            }).catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    });
+    
+    document.getElementById('closeSuccessBtn').addEventListener('click', function() {
+        window.location.href = "{% url 'translation:browse' %}";
+    });
+    
+    
+    window.onclick = function(event) {
+        const modal = document.getElementById('successModal');
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    };
+    
+    window.onload = function() {
+        document.getElementById('successModal').style.display = 'none';
+    };
+    
+    </script>
 {% endblock %}
