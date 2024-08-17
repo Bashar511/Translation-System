@@ -38,24 +38,6 @@ class projectForm(forms.ModelForm):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 class PermissionForm(forms.ModelForm):
     class Meta:
         model = ProjectMember

@@ -25,10 +25,6 @@ def instant(request):
     return render(request, "instant_translation.html", context)
 
 
-# @login_required
-# def browse(request):
-#     allproject=Project.objects.filter(owner=request.user)
-#     return render(request,'browse_projects.html',{'form_out':allproject})
 @login_required
 def browse(request):
     owned_projects = Project.objects.filter(owner=request.user)
@@ -91,28 +87,12 @@ def details(request,x):
     for key, value in processed_fileAR_before.items():
         processed_fileAR_after[key]["sentence"]=processed_fileAR_before[key]["sentence"]
     if request.method == 'POST':
-        try:
-            number=request.POST['number']
-        except MultiValueDictKeyError:
-            number=1
-            
-        try:
-            decision=request.POST['final_decision']
-        except MultiValueDictKeyError:
-            decision=''
-            
-        try:
-            text = request.POST['text_field']
-        except MultiValueDictKeyError:
-            text = ''
-
-        processed_text = hel_en2ar(text)
-
+       
+        number = request.POST.get('number', 1)  
+        decision = request.POST.get('final_decision', '') 
 
         context = {
             'title':title,
-            'unprocessed' : text,
-            'processed' : processed_text,
             'fileEN' : processed_fileEN,
             'fileAR' : processed_fileAR_after,
             'decision':decision,
@@ -124,8 +104,6 @@ def details(request,x):
     else:
         context = {
             'title':title,
-            'unprocessed' : '',
-            'processed' : '',
             'fileEN' : processed_fileEN,
             'fileAR' : processed_fileAR_after,
             'decision':'',
